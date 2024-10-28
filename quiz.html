@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+
+    <script src="
+https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js
+"></script>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        background-color: #f1f1f1;
+        font-family: Arial, sans-serif;
+      }
+
+      #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 55vh;
+        height: 55vh;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        font-size: 10rem;
+        color: #333;
+      }
+
+      .next {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 2rem;
+      }
+
+      #choices {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5vh;
+        user-select: none;
+        font-size: 2rem;
+      }
+
+      .choice {
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        border-radius: 5px;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+
+      .choice:hover {
+        opacity: 0.8;
+      }
+
+      .next:hover {
+        opacity: 0.8;
+      }
+
+      .correct {
+        background-color: green;
+      }
+
+      .incorrect {
+        background-color: red;
+      }
+
+      .tada {
+        position: absolute;
+        font-size: 2rem;
+      }
+
+      #counter {
+        position: absolute;
+        top: 5vh;
+        right: 0px;
+        width: 100vw;
+        text-align: center;
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="counter">0</div>
+    <div id="container"></div>
+
+    <div id="choices">
+      <div class="choice">ryo</div>
+      <div class="choice">ji</div>
+      <div class="choice">chu</div>
+    </div>
+
+    <div class="next">Next</div>
+
+    <script>
+      // TODO: track wrong answers
+      // TODO: fun animation for right answer
+
+      // HIRAGANA
+      const nn = ["ん"];
+
+      const vowels = ["a", "i", "u", "e", "o"];
+
+      const a = ["あ", "い", "う", "え", "お"];
+      const k = ["か", "き", "く", "け", "こ"];
+      const s = ["さ", "し", "す", "せ", "そ"];
+      const t = ["た", "ち", "つ", "て", "と"];
+      const n = ["な", "に", "ぬ", "ね", "の"];
+      const h = ["は", "ひ", "ふ", "へ", "ほ"];
+      const m = ["ま", "み", "む", "め", "も"];
+      const y = ["や", "", "ゆ", "", "よ"];
+      const r = ["ら", "り", "る", "れ", "ろ"];
+      const w = ["わ", "", "", "", "を"];
+
+      const g = ["が", "ぎ", "ぐ", "げ", "ご"];
+      const z = ["ざ", "じ", "ず", "ぜ", "ぞ"];
+      const d = ["だ", "ぢ", "づ", "で", "ど"];
+      const b = ["ば", "び", "ぶ", "べ", "ぼ"];
+      const p = ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"];
+
+      const _a = ["ah", "i", "u", "eh", "oh"];
+      const _k = ["kah", "ki", "ku", "keh", "koh"];
+      const _s = ["sah", "shi", "su", "seh", "soh"];
+      const _t = ["tah", "chi", "tsu", "teh", "toh"];
+      const _n = ["nah", "ni", "nu", "neh", "noh"];
+      const _h = ["hah", "hi", "fu", "heh", "hoh"];
+      const _m = ["mah", "mi", "mu", "meh", "moh"];
+      const _y = ["yah", "", "yu", "", "yoh"];
+      const _r = ["rah", "ri", "ru", "reh", "roh"];
+      const _w = ["wah", "", "", "", "woh"];
+      const _g = ["gah", "gi", "gu", "geh", "goh"];
+      const _z = ["zah", "ji", "zu", "zeh", "zoh"];
+      const _d = ["dah", "ji", "dzu", "deh", "doh"];
+      const _b = ["bah", "bi", "bu", "beh", "boh"];
+      const _p = ["pah", "pi", "pu", "peh", "poh"];
+      const _nn = ["-n"];
+
+      const all = [a, k, s, t, n, h, m, y, r, w, nn, g, z, d, b, p];
+      const allSounds = [
+        _a,
+        _k,
+        _s,
+        _t,
+        _n,
+        _h,
+        _m,
+        _y,
+        _r,
+        _w,
+        _nn,
+        _g,
+        _z,
+        _d,
+        _b,
+        _p,
+      ];
+
+      const getRandomLetter = () => {
+        const rowIdx = Math.floor(Math.random() * all.length);
+        const randomRow = all[rowIdx];
+        const cellIdx = Math.floor(Math.random() * randomRow.length);
+        const randomLetter = randomRow[cellIdx];
+        if (randomLetter === "") {
+          return getRandomLetter();
+        }
+        const sound = allSounds[rowIdx][cellIdx];
+        return { letter: randomLetter, sound };
+      };
+
+      let count = 0;
+
+      let prev = "";
+
+      const next = () => {
+        const { letter, sound } = getRandomLetter();
+        document.getElementById("choices").innerHTML = "";
+
+        // Clear them out and recreate every time to avoid duplicate event listeners
+        for (let i = 0; i < 3; i++) {
+          const choice = document.createElement("div");
+          choice.classList.add("choice");
+          document.getElementById("choices").appendChild(choice);
+        }
+
+        if (letter === prev) {
+          return next();
+        }
+        if (letter === "") {
+          return next();
+        }
+        prev = letter;
+        document.getElementById("container").innerHTML = letter;
+
+        const choices = document.querySelectorAll(".choice");
+
+        choices.forEach((choice) => {
+          choice.classList.remove("correct");
+          choice.classList.remove("incorrect");
+        });
+        const correctChoice = Math.floor(Math.random() * choices.length);
+        choices[correctChoice].textContent = sound;
+        const wrongChoices = allSounds
+          .map((sound) => sound[Math.floor(Math.random() * sound.length)])
+          .filter((choice) => choice !== sound);
+
+        choices.forEach((choice, idx) => {
+          if (idx !== correctChoice) {
+            choice.textContent = wrongChoices.pop();
+          }
+          choice.addEventListener("click", () => {
+            if (idx === correctChoice) {
+              choice.classList.add("correct");
+              count++;
+              document.getElementById("counter").textContent = count;
+              // Play animation
+              const tl = gsap.timeline();
+              tl.to(choice, { duration: 0.1, scale: 1.2 });
+              tl.to(choice, { duration: 0.1, scale: 1 });
+              tl.to(container, {
+                duration: 0.8,
+                scale: 3,
+                ease: "bounce.in(1.5)",
+              });
+              tl.to(container, {
+                duration: 0.5,
+                opacity: 0,
+                onComplete: () => {
+                  gsap.set(container, { opacity: 1, scale: 1 });
+                  next();
+                },
+              });
+
+              for (let i = 0; i < 50; i++) {
+                const tadaEl = document.createElement("div");
+                tadaEl.classList.add("tada");
+                tadaEl.textContent = "🎉";
+                document.body.appendChild(tadaEl);
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                if (Math.random() > 0.5) {
+                  x *= -1;
+                }
+                if (Math.random() > 0.5) {
+                  y *= -1;
+                }
+                x *= 0.5;
+                y *= 0.5;
+
+                const scale = Math.random() * 2;
+                const duration = Math.random() * 1 + 0.5;
+                const delay = Math.random() * 0.5;
+                const initScale = 0.3 + Math.random() * 0.7;
+                gsap.set(tadaEl, { scale: initScale });
+                tl.to(
+                  tadaEl,
+                  {
+                    x,
+                    y,
+                    scale,
+                    duration,
+                    onComplete: () => {
+                      tadaEl.remove();
+                    },
+                  },
+                  delay
+                );
+                // tl.to(
+                //   tadaEl,
+                //   {
+                //     y: "+=300",
+                //     duration: 1,
+                //   },
+                //   0
+                // );
+              }
+            } else {
+              choice.classList.add("incorrect");
+              count = 0;
+              document.getElementById("counter").textContent = count;
+            }
+          });
+        });
+      };
+
+      next();
+
+      document.querySelector(".next").addEventListener("click", next);
+
+      // g-line	が
+      // ga	ぎ
+      // gi	ぐ
+      // gu	げ
+      // ge	ご
+      // go
+      // z-line	ざ
+      // za	じ
+      // ji	ず
+      // zu	ぜ
+      // ze	ぞ
+      // zo
+      // d-line	だ
+      // da	ぢ
+      // ji	づ
+      // zu	で
+      // de	ど
+      // do
+      // b-line	ば
+      // ba	び
+      // bi	ぶ
+      // bu	べ
+      // be	ぼ
+      // bo
+      // p-line	ぱ
+      // pa	ぴ
+      // pi	ぷ
+      // pu	ぺ
+      // pe	ぽ
+      // po
+    </script>
+  </body>
+</html>

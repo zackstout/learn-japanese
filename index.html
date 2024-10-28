@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 95%;
+        font-family: Arial, Helvetica, sans-serif;
+        /* transform: scale(0.75); */
+      }
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+        font-size: 3rem;
+        min-width: 15vw;
+      }
+      th {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+        font-size: 1.5rem;
+        color: rgb(41, 200, 168);
+      }
+
+      .mnemonic {
+        font-size: 0.85rem;
+        width: 100%;
+      }
+
+      hr {
+        margin: 0.4rem;
+      }
+
+      body {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .katakana {
+        color: blue;
+      }
+    </style>
+  </head>
+
+  <table></table>
+  <body>
+    <script>
+      // KA SA TA
+      // NA HA MA
+      // YA RA WA
+
+      // Only the upper T get (semi)voiced sounds.
+
+      // Hiragana
+      // Katakana
+      // Kanji
+      // Romaji
+
+      // SEMIVOICED SOUNDS
+      // Appending circle to "h" sounds makes a "p" sound
+
+      // VOICED SOUNDS
+      // Appending dashes to "h" sounds makes a "b" sound
+      // Appending dashes to "t" sounds makes a "d" sound
+      // Appending dashes to "s" sounds makes a "z" sound
+      // Appending dashes to "k" sounds makes a "g" sound
+
+      // "zi" is pronounced "ji"
+      // "di" is pronounced "ji"
+      // "du" is pronounced "dzu"
+
+      // So in addition to our original 10 sounds (with 9 consonants), we get 5 more (from H, T, S and K)
+
+      // "Y" SOUNDS
+      // e.g. "kya" = "ki" + "ya" (written small)
+      // "sha" = "shi" + "ya" (written small)
+      // "cha" = "chi" + "ya" (written small)
+      // "ju" = "zhi" + "yu" (written small)
+
+      // DOUBLE CONSONANTS
+      // e.g. "akka" = "a" + "tsu" (written small) + "ka"
+
+      // LONG VOWELS
+      // e.g. "o"+"to"+"u"+"san" = father = "otousan"
+      // e.g. "o"+"ka"+"a"+"san" = mother = "okaasan"
+
+      // "e" + "i" = "ei" pronounced "ay"
+
+      // a	i	u	e	o
+
+      // HIRAGANA
+      const a = ["あ", "い", "う", "え", "お"];
+      const k = ["か", "き", "く", "け", "こ"];
+      const s = ["さ", "し*", "す", "せ", "そ"];
+      const t = ["た", "ち*", "つ*", "て", "と"];
+      const n = ["な", "に", "ぬ", "ね", "の"];
+      const h = ["は", "ひ", "ふ*", "へ", "ほ"];
+      const m = ["ま", "み", "む", "め", "も"];
+      const y = ["や", "", "ゆ", "", "よ"];
+      const r = ["ら", "り", "る", "れ", "ろ"];
+      const w = [
+        "わ",
+        //    "ゐ", "", "ゑ",
+        "",
+        "",
+        "",
+        "を<span>(o)</span>",
+      ];
+      const nn = ["ん"];
+
+      // KATAKANA
+      const _a = ["ア", "イ", "ウ", "エ", "オ"];
+      const _k = ["カ", "キ", "ク", "ケ", "コ"];
+      const _s = ["サ", "シ*", "ス", "セ", "ソ"];
+      const _t = ["タ", "チ*", "ツ*", "テ", "ト"];
+      const _n = ["ナ", "ニ", "ヌ", "ネ", "ノ"];
+      const _h = ["ハ", "ヒ", "フ*", "ヘ", "ホ"];
+      const _m = ["マ", "ミ", "ム", "メ", "モ"];
+      const _y = ["ヤ", "", "ユ", "", "ヨ"];
+      const _r = ["ラ", "リ", "ル", "レ", "ロ"];
+      const _w = ["ワ", "", "", "", "ヲ"];
+      const _nn = ["ン"];
+
+      const table = document.querySelector("table");
+      const thead = document.createElement("thead");
+      const tbody = document.createElement("tbody");
+      const titles = ["", "a", "i/y", "u", "e", "o"];
+      const rows = [a, k, s, t, n, h, m, y, r, w, nn];
+      const rows2 = [_a, _k, _s, _t, _n, _h, _m, _y, _r, _w, _nn];
+      const mnemonics = [
+        ["'A'", "eels", "'U'", "exotic (bird)", "'o'"],
+        ["can can", "key", "cuckoo", "keg", "cohabit"],
+        [
+          "sah-ign -> saw (tree)",
+          "she (boob)",
+          "su-wing",
+          "sexy(?)",
+          "songbird(?)",
+        ],
+        ["'ta'", "chin", "tsu (two) fish (??)", "'T'", "toe"],
+        [
+          "naughty nun (lol)",
+          "needle",
+          "noose (...) -- noodles!",
+          "neko = cat",
+          "nose (pig's)",
+        ],
+        [
+          "'ha'",
+          "he (his nose?)",
+          "hula",
+          "St. Helens",
+          "'Ho ho ho' says demon santa",
+        ],
+        [
+          "mama demon",
+          "21? me!",
+          "moo (cow)",
+          "meh = eye",
+          "mo' worms, mo' fish",
+        ],
+        ["yak", "", "unique fish", "", "'yo', says hitchhiker"],
+        [
+          "rapper (spinning)",
+          "reeds",
+          "route (crazy)",
+          "retch",
+          "road (less crazy)",
+        ],
+        ["wasp", "", "", "", "whoa!"],
+        ["'n'", "", "", "", ""],
+      ];
+
+      const katakanaMnemonics = [
+        [
+          "'A'",
+          "eagle",
+          "'' ''",
+          "engineer's girder",
+          "'Oooo', says opera singer",
+        ],
+        ["'' ''", "'' ''", "cook's hat", "'K'", "corners"],
+        ["salmon -> saw (tree)", "she (face)", "superman", "'' ''", "sew"],
+        [
+          "tako = kite",
+          "cheerleader",
+          "tsu (two) fish",
+          "telephone pole",
+          "totem pole",
+        ],
+        ["narwhal", "needles", "noodles", "'neigh' says horse", "nose (long)"],
+        ["hat", "'hee hee', he says", "??", "'' ''", "holy"],
+        ["math", "2+1? me!", "moo (?)", "'do you want to?' 'meh'", "'' ''"],
+        ["'' ''", "", "??", "", "'yo, it exists'"],
+        ["raptor (?)", "'' ''", "route (?)", "Red (rapunzel)", "road"],
+        ["whaaaa?", "", "", "", "'woof!'"],
+        ["", "", "", "", ""],
+      ];
+
+      const rowTitles = [
+        "-",
+        "k/g",
+        "s/z",
+        "t/d",
+        "n",
+        "h/p/b",
+        "m",
+        "y",
+        "r",
+        "w",
+        "-n",
+      ];
+
+      for (let i = 0; i < titles.length; i++) {
+        const th = document.createElement("th");
+        th.textContent = titles[i];
+        thead.appendChild(th);
+      }
+      for (let i = 0; i < rows.length; i++) {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        th.textContent = rowTitles[i];
+        tr.appendChild(th);
+        for (let j = 0; j < rows[i].length; j++) {
+          const td = document.createElement("td");
+          td.innerHTML = rows[i][j];
+          //   td.innerHTML += `  <span class='katakana'>${rows2[i][j]}</span>`;
+          td.innerHTML += `<hr><div class='mnemonic'>${mnemonics[i][j]}</div>`;
+          //   td.innerHTML += `<div class='mnemonic katakana'>${katakanaMnemonics[i][j]}</div>`;
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+
+      table.appendChild(thead);
+      table.appendChild(tbody);
+    </script>
+  </body>
+</html>
