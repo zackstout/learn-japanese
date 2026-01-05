@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz me</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #character {
+        font-size: 10rem;
+      }
+
+      input {
+        font-size: 2rem;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: center;
+        appearance: none;
+        -webkit-appearance: none;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #333;
+        width: 40vw;
+      }
+
+      #quizIndex {
+        font-size: 2rem;
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 2rem;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quiz</h1>
+    <div id="character"></div>
+    <button id="start">Start</button>
+    <input type="text" id="charIn" />
+    <div id="quizIndex"></div>
+    <script>
+      const hiragana = [
+        {
+          character: "あ",
+          pronunciation: "a",
+        },
+        {
+          character: "い",
+          pronunciation: "i",
+        },
+        {
+          character: "う",
+          pronunciation: "u",
+        },
+        {
+          character: "え",
+          pronunciation: "e",
+        },
+        {
+          character: "お",
+          pronunciation: "o",
+        },
+        {
+          character: "か",
+          pronunciation: "ka",
+        },
+        {
+          character: "き",
+          pronunciation: "ki",
+        },
+        {
+          character: "く",
+          pronunciation: "ku",
+        },
+        {
+          character: "け",
+          pronunciation: "ke",
+        },
+        {
+          character: "こ",
+          pronunciation: "ko",
+        },
+        {
+          character: "さ",
+          pronunciation: "sa",
+        },
+        {
+          character: "し",
+          pronunciation: "shi",
+        },
+        {
+          character: "す",
+          pronunciation: "su",
+        },
+        {
+          character: "せ",
+          pronunciation: "se",
+        },
+        {
+          character: "そ",
+          pronunciation: "so",
+        },
+        {
+          character: "た",
+          pronunciation: "ta",
+        },
+        {
+          character: "ち",
+          pronunciation: "chi",
+        },
+        {
+          character: "つ",
+          pronunciation: "tsu",
+        },
+        {
+          character: "て",
+          pronunciation: "te",
+        },
+        {
+          character: "と",
+          pronunciation: "to",
+        },
+        {
+          character: "な",
+          pronunciation: "na",
+        },
+        {
+          character: "に",
+          pronunciation: "ni",
+        },
+        {
+          character: "ぬ",
+          pronunciation: "nu",
+        },
+        {
+          character: "ね",
+          pronunciation: "ne",
+        },
+        {
+          character: "の",
+          pronunciation: "no",
+        },
+        {
+          character: "は",
+          pronunciation: "ha",
+        },
+        {
+          character: "ひ",
+          pronunciation: "hi",
+        },
+        {
+          character: "ふ",
+          pronunciation: "fu",
+        },
+        {
+          character: "へ",
+          pronunciation: "he",
+        },
+        {
+          character: "ほ",
+          pronunciation: "ho",
+        },
+        {
+          character: "ま",
+          pronunciation: "ma",
+        },
+        {
+          character: "み",
+          pronunciation: "mi",
+        },
+        {
+          character: "む",
+          pronunciation: "mu",
+        },
+        {
+          character: "め",
+          pronunciation: "me",
+        },
+        {
+          character: "も",
+          pronunciation: "mo",
+        },
+        {
+          character: "や",
+          pronunciation: "ya",
+        },
+        {
+          character: "ゆ",
+          pronunciation: "yu",
+        },
+        {
+          character: "よ",
+          pronunciation: "yo",
+        },
+        {
+          character: "ら",
+          pronunciation: "ra",
+        },
+        {
+          character: "り",
+          pronunciation: "ri",
+        },
+        {
+          character: "る",
+          pronunciation: "ru",
+        },
+        {
+          character: "れ",
+          pronunciation: "re",
+        },
+        {
+          character: "ろ",
+          pronunciation: "ro",
+        },
+        {
+          character: "わ",
+          pronunciation: "wa",
+        },
+        {
+          character: "を",
+          pronunciation: "wo",
+        },
+        {
+          character: "ん",
+          pronunciation: "n",
+        },
+        {
+          character: "が",
+          pronunciation: "ga",
+          isHard: true,
+        },
+        {
+          character: "ぎ",
+          pronunciation: "gi",
+          isHard: true,
+        },
+        {
+          character: "ぐ",
+          pronunciation: "gu",
+          isHard: true,
+        },
+        {
+          character: "げ",
+          pronunciation: "ge",
+          isHard: true,
+        },
+        {
+          character: "ご",
+          pronunciation: "go",
+          isHard: true,
+        },
+        {
+          character: "ざ",
+          pronunciation: "za",
+          isHard: true,
+        },
+        {
+          character: "じ",
+          pronunciation: "ji",
+          isHard: true,
+        },
+        {
+          character: "ず",
+          pronunciation: "zu",
+          isHard: true,
+        },
+        {
+          character: "ぜ",
+          pronunciation: "ze",
+          isHard: true,
+        },
+        {
+          character: "ぞ",
+          pronunciation: "zo",
+          isHard: true,
+        },
+        {
+          character: "だ",
+          pronunciation: "da",
+          isHard: true,
+        },
+        {
+          character: "ぢ",
+          pronunciation: "ji",
+          isHard: true,
+        },
+        {
+          character: "づ",
+          pronunciation: "zu",
+          isHard: true,
+        },
+        {
+          character: "で",
+          pronunciation: "de",
+          isHard: true,
+        },
+        {
+          character: "ど",
+          pronunciation: "do",
+          isHard: true,
+        },
+        {
+          character: "ば",
+          pronunciation: "ba",
+          isHard: true,
+        },
+        {
+          character: "び",
+          pronunciation: "bi",
+          isHard: true,
+        },
+        {
+          character: "ぶ",
+          pronunciation: "bu",
+          isHard: true,
+        },
+        {
+          character: "べ",
+          pronunciation: "be",
+          isHard: true,
+        },
+        {
+          character: "ぼ",
+          pronunciation: "bo",
+          isHard: true,
+        },
+        {
+          character: "ぱ",
+          pronunciation: "pa",
+          isHard: true,
+        },
+        {
+          character: "ぴ",
+          pronunciation: "pi",
+          isHard: true,
+        },
+        {
+          character: "ぷ",
+          pronunciation: "pu",
+          isHard: true,
+        },
+        {
+          character: "ぺ",
+          pronunciation: "pe",
+          isHard: true,
+        },
+        {
+          character: "ぽ",
+          pronunciation: "po",
+          isHard: true,
+        },
+      ];
+
+      const shuffle = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      };
+
+      let quizIndex = 0;
+      let quizTotal = 46;
+      let time = 0;
+      let quiz = [];
+
+      // This is what will be pulled from and store in local storage
+      let attempts = [];
+
+      const storedAttempts = localStorage.getItem("hiragana-attempts");
+      if (storedAttempts) {
+        attempts = JSON.parse(storedAttempts);
+      }
+
+      console.log("ATTEMPTS", attempts);
+
+      let quizNumber = 1;
+
+      const prevQuizNumber = attempts.map((a) => a.quizNumber).pop();
+      if (!isNaN(prevQuizNumber)) {
+        quizNumber = prevQuizNumber + 1;
+      }
+
+      const characterEl = document.getElementById("character");
+      const charInEl = document.getElementById("charIn");
+
+      const startQuiz = () => {
+        const startButton = document.getElementById("start");
+        if (startButton) startButton.remove();
+
+        const shuffled = shuffle(hiragana.filter((h) => !h.isHard));
+        quiz = shuffled.slice(0, quizTotal);
+        console.log(quiz);
+
+        // for (let i = 0; i < quizTotal; i++) {
+        //   const character = quiz[i];
+        //   const quizIndexEl = document.createElement("span");
+        //   quizIndexEl.textContent = i + 1;
+        //   document.getElementById("quizIndex").appendChild(quizIndexEl);
+        // }
+
+        showCharacter("3");
+        setTimeout(() => {
+          showCharacter("2");
+        }, 1000);
+        setTimeout(() => {
+          showCharacter("1");
+        }, 2000);
+        setTimeout(() => {
+          showCharacter("Start!");
+        }, 3000);
+        setTimeout(() => {
+          showCharacter(quiz[quizIndex]?.character);
+          charInEl.focus();
+          time = Date.now();
+        }, 4000);
+      };
+
+      const showCharacter = (character) => {
+        characterEl.textContent = character;
+      };
+
+      charInEl.addEventListener("input", (e) => {
+        const value = e.target.value;
+        const character = quiz[quizIndex];
+        // console.log(value, quizIndex, character, character.pronunciation);
+
+        if (value === " ") {
+          // Show answer, record attempt
+        }
+
+        if (value === character.pronunciation) {
+          quizIndex++;
+          const timeDiff = Date.now() - time;
+          console.log("Correct!", timeDiff);
+
+          // Record attempt:
+          attempts.push({
+            character: character.character,
+            pronunciation: character.pronunciation,
+            time: timeDiff,
+            timestamp: Date.now(),
+            fontFamily: "Arial",
+            quizNumber,
+          });
+
+          if (quizIndex >= quizTotal) {
+            // alert("Quiz finished!");
+            // startQuiz();
+            console.log("Quiz finished");
+
+            const congratulations = document.createElement("h2");
+            congratulations.textContent =
+              "Congratulations! You finished the quiz!";
+            document.body.appendChild(congratulations);
+
+            const restart = document.createElement("button");
+            restart.textContent = "Restart";
+            restart.addEventListener("click", () => {
+              startQuiz();
+              congratulations.remove();
+              restart.remove();
+              charInEl.value = "";
+            });
+            document.body.appendChild(restart);
+
+            console.log(
+              "Saving attempts",
+              attempts.sort((a, b) => a.time - b.time)
+            );
+
+            // Save attempts to local storage
+            localStorage.setItem("hiragana-attempts", JSON.stringify(attempts));
+          } else {
+            showCharacter(quiz[quizIndex]?.character);
+            time = Date.now();
+            charInEl.value = "";
+          }
+        }
+      });
+
+      // startQuiz();
+
+      document.getElementById("start").addEventListener("click", startQuiz);
+
+      // 46 original
+      // 25 vocalized
+      // 36 yoon
+      // 46 + 25 + 36 = 107 total.
+    </script>
+  </body>
+</html>

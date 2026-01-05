@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Travel Kanji Table</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        padding: 2rem;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 900px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+
+      th {
+        background: #f3f3f3;
+        font-weight: 600;
+      }
+
+      td.kanji {
+        font-size: 1.6rem;
+        text-align: center;
+      }
+
+      td.reading {
+        font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic", sans-serif;
+      }
+
+      tr:hover {
+        background: #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Core Travel Kanji</h1>
+
+    <table id="kanji-table">
+      <thead>
+        <tr>
+          <th>Kanji</th>
+          <th>Reading</th>
+          <th>Mnemonic</th>
+          <th>Meaning</th>
+          <th>Category</th>
+          <th>Example (JP)</th>
+          <th>Example (EN)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      const travelKanji = [
+        // ===== Verbs (high-frequency actions) =====
+        { kanji: "行", meaning: "go", category: "verb" },
+        { kanji: "来", meaning: "come", category: "verb" },
+        { kanji: "食", meaning: "eat", category: "verb" },
+        { kanji: "見", meaning: "see", category: "verb" },
+        { kanji: "入", meaning: "enter", category: "verb" },
+        { kanji: "出", meaning: "exit", category: "verb" },
+        { kanji: "買", meaning: "buy", category: "verb" },
+        { kanji: "使", meaning: "use", category: "verb" },
+        { kanji: "聞", meaning: "listen / ask", category: "verb" },
+        { kanji: "話", meaning: "speak", category: "verb" },
+
+        // ===== Places & Navigation =====
+        { kanji: "駅", meaning: "station", category: "place" },
+        { kanji: "店", meaning: "shop", category: "place" },
+        { kanji: "口", meaning: "entrance / exit", category: "place" },
+        { kanji: "道", meaning: "road", category: "place" },
+        { kanji: "町", meaning: "town", category: "place" },
+        { kanji: "国", meaning: "country", category: "place" },
+
+        // ===== Food & Daily Needs =====
+        { kanji: "水", meaning: "water", category: "food" },
+        { kanji: "酒", meaning: "alcohol", category: "food" },
+        { kanji: "茶", meaning: "tea", category: "food" },
+        { kanji: "肉", meaning: "meat", category: "food" },
+        { kanji: "魚", meaning: "fish", category: "food" },
+        { kanji: "米", meaning: "rice", category: "food" },
+
+        // ===== Money, Time, Quantities =====
+        { kanji: "円", meaning: "yen", category: "money" },
+        { kanji: "時", meaning: "time / hour", category: "time" },
+        { kanji: "分", meaning: "minute", category: "time" },
+        { kanji: "半", meaning: "half", category: "quantity" },
+        { kanji: "大", meaning: "big", category: "quantity" },
+        { kanji: "小", meaning: "small", category: "quantity" },
+      ];
+
+      const travelKanjiExpanded = [
+        // ===== Verbs (high-frequency actions) =====
+        {
+          kanji: "行",
+          reading: "い",
+          meaning: "go",
+          category: "verb",
+          exampleJP: "行きます",
+          exampleEN: "to go",
+          mnemonic: "crossroads",
+        },
+        {
+          kanji: "来",
+          reading: "く",
+          meaning: "come",
+          category: "verb",
+          exampleJP: "来ます",
+          exampleEN: "to come",
+          mnemonic: "person with arms out",
+        },
+        {
+          kanji: "食",
+          reading: "た",
+          meaning: "eat",
+          category: "verb",
+          exampleJP: "食べます",
+          exampleEN: "to eat",
+          mnemonic: "roof over mouth",
+        },
+        {
+          kanji: "見",
+          reading: "み",
+          meaning: "see",
+          category: "verb",
+          exampleJP: "見ます",
+          exampleEN: "to see",
+          mnemonic: "giant eye on legs",
+        },
+        {
+          kanji: "入",
+          reading: "はい",
+          meaning: "enter",
+          category: "verb",
+          exampleJP: "入ります",
+          exampleEN: "to enter",
+          mnemonic: "narrow opening",
+        },
+        {
+          kanji: "出",
+          reading: "で",
+          meaning: "exit",
+          category: "verb",
+          exampleJP: "出ます",
+          exampleEN: "to exit / leave",
+          mnemonic: "popping out of ground",
+        },
+        {
+          kanji: "買",
+          reading: "か",
+          meaning: "buy",
+          category: "verb",
+          exampleJP: "買います",
+          exampleEN: "to buy",
+          mnemonic: "gift with bow",
+        },
+        {
+          kanji: "使",
+          reading: "つか",
+          meaning: "use",
+          category: "verb",
+          exampleJP: "使います",
+          exampleEN: "to use",
+          mnemonic: "?",
+        },
+        {
+          kanji: "聞",
+          reading: "き",
+          meaning: "listen / ask",
+          category: "verb",
+          exampleJP: "聞きます",
+          exampleEN: "to listen / ask",
+          mnemonic: "two speakers",
+        },
+        {
+          kanji: "話",
+          reading: "はな",
+          meaning: "speak",
+          category: "verb",
+          exampleJP: "話します",
+          exampleEN: "to speak",
+          mnemonic: "?",
+        },
+
+        // ===== Places & Navigation =====
+        {
+          kanji: "駅",
+          reading: "えき",
+          meaning: "station",
+          category: "place",
+          exampleJP: "駅",
+          exampleEN: "station",
+          mnemonic: "zooming train",
+        },
+        {
+          kanji: "店",
+          reading: "みせ",
+          meaning: "shop",
+          category: "place",
+          exampleJP: "店",
+          exampleEN: "shop / store",
+          mnemonic: "guy in tent",
+        },
+        {
+          kanji: "口",
+          reading: "ぐち",
+          meaning: "entrance / exit",
+          category: "place",
+          exampleJP: "出口",
+          exampleEN: "exit",
+          mnemonic: "big hole",
+        },
+        {
+          kanji: "道",
+          reading: "みち",
+          meaning: "road",
+          category: "place",
+          exampleJP: "道",
+          exampleEN: "road / street",
+          mnemonic: "?",
+        },
+        {
+          kanji: "町",
+          reading: "まち",
+          meaning: "town",
+          category: "place",
+          exampleJP: "町",
+          exampleEN: "town",
+          mnemonic: "?",
+        },
+        {
+          kanji: "国",
+          reading: "くに",
+          meaning: "country",
+          category: "place",
+          exampleJP: "国",
+          exampleEN: "country",
+          mnemonic: "?",
+        },
+
+        // ===== Food & Daily Needs =====
+        {
+          kanji: "水",
+          reading: "みず",
+          meaning: "water",
+          category: "food",
+          exampleJP: "水",
+          exampleEN: "water",
+          mnemonic: "?",
+        },
+        {
+          kanji: "酒",
+          reading: "さけ",
+          meaning: "alcohol",
+          category: "food",
+          exampleJP: "酒",
+          exampleEN: "alcohol / sake",
+          mnemonic: "?",
+        },
+        {
+          kanji: "茶",
+          reading: "ちゃ",
+          meaning: "tea",
+          category: "food",
+          exampleJP: "お茶",
+          exampleEN: "tea",
+          mnemonic: "?",
+        },
+        {
+          kanji: "肉",
+          reading: "にく",
+          meaning: "meat",
+          category: "food",
+          exampleJP: "肉",
+          exampleEN: "meat",
+          mnemonic: "animals in pen",
+        },
+        {
+          kanji: "魚",
+          reading: "さかな",
+          meaning: "fish",
+          category: "food",
+          exampleJP: "魚",
+          exampleEN: "fish",
+          mnemonic: "?",
+        },
+        {
+          kanji: "米",
+          reading: "こめ",
+          meaning: "rice",
+          category: "food",
+          exampleJP: "米",
+          exampleEN: "rice",
+          mnemonic: "grains bursting",
+        },
+
+        // ===== Money, Time, Quantities =====
+        {
+          kanji: "円",
+          reading: "えん",
+          meaning: "yen",
+          category: "money",
+          exampleJP: "円",
+          exampleEN: "yen",
+          mnemonic: "?",
+        },
+        {
+          kanji: "時",
+          reading: "じ",
+          meaning: "time / hour",
+          category: "time",
+          exampleJP: "三時",
+          exampleEN: "three o’clock",
+          mnemonic: "?",
+        },
+        {
+          kanji: "分",
+          reading: "ふん",
+          meaning: "minute",
+          category: "time",
+          exampleJP: "五分",
+          exampleEN: "five minutes",
+          mnemonic: "?",
+        },
+        {
+          kanji: "半",
+          reading: "はん",
+          meaning: "half",
+          category: "quantity",
+          exampleJP: "半分",
+          exampleEN: "half",
+          mnemonic: "?",
+        },
+        {
+          kanji: "大",
+          reading: "おお",
+          meaning: "big",
+          category: "quantity",
+          exampleJP: "大きい",
+          exampleEN: "big",
+          mnemonic: "?",
+        },
+        {
+          kanji: "小",
+          reading: "ちい",
+          meaning: "small",
+          category: "quantity",
+          exampleJP: "小さい",
+          exampleEN: "small",
+          mnemonic: "?",
+        },
+      ];
+
+      const tbody = document.querySelector("#kanji-table tbody");
+
+      travelKanjiExpanded.forEach((item) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+      <td class="kanji">${item.kanji}</td>
+      <td class="reading">${item.reading}</td>
+      <td>${item.mnemonic}</td>
+      <td>${item.meaning}</td>
+      <td>${item.category}</td>
+      <td>${item.exampleJP}</td>
+      <td>${item.exampleEN}</td>
+    `;
+
+        tbody.appendChild(tr);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanji</title>
+
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        padding: 2rem;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 900px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+      }
+
+      th {
+        background: #f3f3f3;
+        font-weight: 600;
+      }
+
+      td.kanji {
+        font-size: 1.6rem;
+        text-align: center;
+      }
+
+      td.reading {
+        font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic", sans-serif;
+      }
+
+      tr:hover {
+        background: #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Core Travel Kanji (2)</h1>
+
+    <table id="kanji-table">
+      <thead>
+        <tr>
+          <th>Kanji</th>
+          <th>Semantic Core</th>
+          <th>Mnemonic</th>
+          <th>Ex word (JP)</th>
+          <th>Ex word (reading)</th>
+          <th>Ex word (EN)</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      const coreKanji100 = [
+        // Numbers & quantities
+        {
+          kanji: "一",
+          reading: "いち",
+          example: { JP: "一つ", reading: "ひとつ", EN: "one (thing)" },
+          category: "numbers",
+        },
+        {
+          kanji: "二",
+          reading: "に",
+          example: { JP: "二人", reading: "ふたり", EN: "two people" },
+          category: "numbers",
+        },
+        {
+          kanji: "三",
+          reading: "さん",
+          example: {
+            JP: "三日",
+            reading: "みっか",
+            EN: "three days / 3rd day",
+          },
+          category: "numbers",
+        },
+        {
+          kanji: "四",
+          reading: "よん",
+          example: { JP: "四月", reading: "しがつ", EN: "April" },
+          category: "numbers",
+        },
+        {
+          kanji: "五",
+          reading: "ご",
+          example: { JP: "五分", reading: "ごふん", EN: "five minutes" },
+          category: "numbers",
+        },
+        {
+          kanji: "六",
+          reading: "ろく",
+          example: { JP: "六月", reading: "ろくがつ", EN: "June" },
+          category: "numbers",
+        },
+        {
+          kanji: "七",
+          reading: "なな",
+          example: { JP: "七時", reading: "しちじ", EN: "7 o’clock" },
+          category: "numbers",
+        },
+        {
+          kanji: "八",
+          reading: "はち",
+          example: {
+            JP: "八日",
+            reading: "ようか",
+            EN: "eight days / 8th day",
+          },
+          category: "numbers",
+        },
+        {
+          kanji: "九",
+          reading: "きゅう",
+          example: { JP: "九時", reading: "くじ", EN: "9 o’clock" },
+          category: "numbers",
+        },
+        {
+          kanji: "十",
+          reading: "じゅう",
+          example: {
+            JP: "十分",
+            reading: "じゅっぷん",
+            EN: "ten minutes / enough",
+          },
+          category: "numbers",
+        },
+        {
+          kanji: "百",
+          reading: "ひゃく",
+          example: { JP: "百円", reading: "ひゃくえん", EN: "100 yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "千",
+          reading: "せん",
+          example: { JP: "千円", reading: "せんえん", EN: "1000 yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "万",
+          reading: "まん",
+          example: { JP: "一万円", reading: "いちまんえん", EN: "10,000 yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "円",
+          reading: "えん",
+          example: { JP: "円", reading: "えん", EN: "yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "半",
+          reading: "はん",
+          example: { JP: "半分", reading: "はんぶん", EN: "half" },
+          category: "numbers",
+        },
+
+        // Time & dates
+        {
+          kanji: "日",
+          reading: "にち",
+          example: { JP: "日曜日", reading: "にちようび", EN: "Sunday" },
+          category: "time",
+        },
+        {
+          kanji: "月",
+          reading: "げつ",
+          example: { JP: "月曜日", reading: "げつようび", EN: "Monday" },
+          category: "time",
+        },
+        {
+          kanji: "年",
+          reading: "ねん",
+          example: { JP: "来年", reading: "らいねん", EN: "next year" },
+          category: "time",
+        },
+        {
+          kanji: "時",
+          reading: "じ",
+          example: { JP: "三時", reading: "さんじ", EN: "3 o’clock" },
+          category: "time",
+        },
+        {
+          kanji: "分",
+          reading: "ふん",
+          example: { JP: "五分", reading: "ごふん", EN: "five minutes" },
+          category: "time",
+        },
+        {
+          kanji: "今",
+          reading: "いま",
+          example: { JP: "今", reading: "いま", EN: "now" },
+          category: "time",
+        },
+        {
+          kanji: "毎",
+          reading: "まい",
+          example: { JP: "毎日", reading: "まいにち", EN: "every day" },
+          category: "time",
+        },
+        {
+          kanji: "曜",
+          reading: "よう",
+          example: { JP: "金曜日", reading: "きんようび", EN: "Friday" },
+          category: "time",
+        },
+        {
+          kanji: "週",
+          reading: "しゅう",
+          example: { JP: "今週", reading: "こんしゅう", EN: "this week" },
+          category: "time",
+        },
+        {
+          kanji: "午",
+          reading: "ご",
+          example: { JP: "午前", reading: "ごぜん", EN: "a.m." },
+          category: "time",
+        },
+        {
+          kanji: "前",
+          reading: "まえ",
+          example: { JP: "名前", reading: "なまえ", EN: "name" },
+          category: "time",
+        },
+
+        // Direction & location
+        {
+          kanji: "上",
+          reading: "うえ",
+          example: { JP: "上", reading: "うえ", EN: "up / above" },
+          category: "direction",
+        },
+        {
+          kanji: "下",
+          reading: "した",
+          example: { JP: "下", reading: "した", EN: "down / below" },
+          category: "direction",
+        },
+        {
+          kanji: "中",
+          reading: "なか",
+          example: { JP: "中", reading: "なか", EN: "inside" },
+          category: "direction",
+        },
+        {
+          kanji: "外",
+          reading: "そと",
+          example: { JP: "外国", reading: "がいこく", EN: "foreign country" },
+          category: "direction",
+        },
+        {
+          kanji: "東",
+          reading: "ひがし",
+          example: { JP: "東京", reading: "とうきょう", EN: "Tokyo" },
+          category: "direction",
+        },
+        {
+          kanji: "西",
+          reading: "にし",
+          example: { JP: "西口", reading: "にしぐち", EN: "west exit" },
+          category: "direction",
+        },
+        {
+          kanji: "南",
+          reading: "みなみ",
+          example: { JP: "南口", reading: "みなみぐち", EN: "south exit" },
+          category: "direction",
+        },
+        {
+          kanji: "北",
+          reading: "きた",
+          example: { JP: "北口", reading: "きたぐち", EN: "north exit" },
+          category: "direction",
+        },
+        {
+          kanji: "右",
+          reading: "みぎ",
+          example: { JP: "右", reading: "みぎ", EN: "right" },
+          category: "direction",
+        },
+        {
+          kanji: "左",
+          reading: "ひだり",
+          example: { JP: "左", reading: "ひだり", EN: "left" },
+          category: "direction",
+        },
+        {
+          kanji: "近",
+          reading: "ちか",
+          example: { JP: "近く", reading: "ちかく", EN: "nearby" },
+          category: "direction",
+        },
+        {
+          kanji: "遠",
+          reading: "とお",
+          example: { JP: "遠い", reading: "とおい", EN: "far" },
+          category: "direction",
+        },
+        {
+          kanji: "入",
+          reading: "い",
+          example: { JP: "入口", reading: "いりぐち", EN: "entrance" },
+          category: "direction",
+        },
+        {
+          kanji: "出",
+          reading: "で",
+          example: { JP: "出口", reading: "でぐち", EN: "exit" },
+          category: "direction",
+        },
+
+        // Food & daily life
+        {
+          kanji: "食",
+          reading: "しょく",
+          example: { JP: "食べる", reading: "たべる", EN: "to eat" },
+          category: "food",
+        },
+        {
+          kanji: "飲",
+          reading: "の",
+          example: {
+            JP: "飲み物",
+            reading: "のみもの",
+            EN: "drink / beverage",
+          },
+          category: "food",
+        },
+        {
+          kanji: "水",
+          reading: "みず",
+          example: { JP: "水", reading: "みず", EN: "water" },
+          category: "food",
+        },
+        {
+          kanji: "米",
+          reading: "こめ",
+          example: { JP: "白米", reading: "はくまい", EN: "white rice" },
+          category: "food",
+        },
+        {
+          kanji: "肉",
+          reading: "にく",
+          example: { JP: "牛肉", reading: "ぎゅうにく", EN: "beef" },
+          category: "food",
+        },
+        {
+          kanji: "魚",
+          reading: "さかな",
+          example: { JP: "魚", reading: "さかな", EN: "fish" },
+          category: "food",
+        },
+        {
+          kanji: "茶",
+          reading: "ちゃ",
+          example: { JP: "お茶", reading: "おちゃ", EN: "tea" },
+          category: "food",
+        },
+        {
+          kanji: "店",
+          reading: "みせ",
+          example: { JP: "店", reading: "みせ", EN: "shop" },
+          category: "daily",
+        },
+        {
+          kanji: "買",
+          reading: "か",
+          example: { JP: "買う", reading: "かう", EN: "to buy" },
+          category: "daily",
+        },
+        {
+          kanji: "金",
+          reading: "きん",
+          example: { JP: "料金", reading: "りょうきん", EN: "fee / fare" },
+          category: "daily",
+        },
+      ];
+
+      const coreKanji100_2 = [
+        // Numbers
+        {
+          kanji: "一",
+          reading: "いち",
+          semanticCore: "oneness, single unit",
+          example: { JP: "一つ", reading: "ひとつ", EN: "one thing" },
+          category: "numbers",
+        },
+        {
+          kanji: "二",
+          reading: "に",
+          semanticCore: "twoness, pair",
+          example: { JP: "二人", reading: "ふたり", EN: "two people" },
+          category: "numbers",
+        },
+        {
+          kanji: "三",
+          reading: "さん",
+          semanticCore: "threeness, multiple",
+          example: { JP: "三日", reading: "みっか", EN: "three days" },
+          category: "numbers",
+        },
+        {
+          kanji: "四",
+          reading: "よん",
+          semanticCore: "four, set quantity",
+          example: { JP: "四月", reading: "しがつ", EN: "April" },
+          category: "numbers",
+        },
+        {
+          kanji: "五",
+          reading: "ご",
+          semanticCore: "five, grouping",
+          example: { JP: "五分", reading: "ごふん", EN: "five minutes" },
+          category: "numbers",
+        },
+        {
+          kanji: "六",
+          reading: "ろく",
+          semanticCore: "six, count",
+          example: { JP: "六月", reading: "ろくがつ", EN: "June" },
+          category: "numbers",
+        },
+        {
+          kanji: "七",
+          reading: "なな",
+          semanticCore: "seven, count",
+          example: { JP: "七時", reading: "しちじ", EN: "7 o’clock" },
+          category: "numbers",
+        },
+        {
+          kanji: "八",
+          reading: "はち",
+          semanticCore: "eight, spread",
+          example: { JP: "八日", reading: "ようか", EN: "eighth day" },
+          category: "numbers",
+        },
+        {
+          kanji: "九",
+          reading: "きゅう",
+          semanticCore: "nine, nearing completion",
+          example: { JP: "九時", reading: "くじ", EN: "9 o’clock" },
+          category: "numbers",
+        },
+        {
+          kanji: "十",
+          reading: "じゅう",
+          semanticCore: "ten, completeness",
+          example: { JP: "十分", reading: "じゅっぷん", EN: "ten minutes" },
+          category: "numbers",
+        },
+        {
+          kanji: "百",
+          reading: "ひゃく",
+          semanticCore: "hundreds, large quantity",
+          example: { JP: "百円", reading: "ひゃくえん", EN: "100 yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "千",
+          reading: "せん",
+          semanticCore: "thousands, many",
+          example: { JP: "千円", reading: "せんえん", EN: "1000 yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "万",
+          reading: "まん",
+          semanticCore: "ten-thousands, magnitude",
+          example: { JP: "一万円", reading: "いちまんえん", EN: "10,000 yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "円",
+          reading: "えん",
+          semanticCore: "currency, circle",
+          example: { JP: "円", reading: "えん", EN: "yen" },
+          category: "numbers",
+        },
+        {
+          kanji: "半",
+          reading: "はん",
+          semanticCore: "half, division",
+          example: { JP: "半分", reading: "はんぶん", EN: "half" },
+          category: "numbers",
+        },
+
+        // Time
+        {
+          kanji: "日",
+          reading: "にち",
+          semanticCore: "day, sun, time unit",
+          example: { JP: "日曜日", reading: "にちようび", EN: "Sunday" },
+          category: "time",
+        },
+        {
+          kanji: "月",
+          reading: "げつ",
+          semanticCore: "month, moon, cycle",
+          example: { JP: "月曜日", reading: "げつようび", EN: "Monday" },
+          category: "time",
+        },
+        {
+          kanji: "年",
+          reading: "ねん",
+          semanticCore: "year, passage of time",
+          example: { JP: "来年", reading: "らいねん", EN: "next year" },
+          category: "time",
+        },
+        {
+          kanji: "時",
+          reading: "じ",
+          semanticCore: "time point, hour",
+          example: { JP: "三時", reading: "さんじ", EN: "3 o’clock" },
+          category: "time",
+        },
+        {
+          kanji: "分",
+          reading: "ふん",
+          semanticCore: "division, minutes, portion",
+          example: { JP: "五分", reading: "ごふん", EN: "five minutes" },
+          category: "time",
+        },
+        {
+          kanji: "今",
+          reading: "いま",
+          semanticCore: "present moment",
+          example: { JP: "今", reading: "いま", EN: "now" },
+          category: "time",
+        },
+        {
+          kanji: "毎",
+          reading: "まい",
+          semanticCore: "repetition, every",
+          example: { JP: "毎日", reading: "まいにち", EN: "every day" },
+          category: "time",
+        },
+        {
+          kanji: "週",
+          reading: "しゅう",
+          semanticCore: "week, cycle",
+          example: { JP: "今週", reading: "こんしゅう", EN: "this week" },
+          category: "time",
+        },
+        {
+          kanji: "前",
+          reading: "まえ",
+          semanticCore: "before, in front",
+          example: { JP: "名前", reading: "なまえ", EN: "name" },
+          category: "time",
+        },
+
+        // Direction / location
+        {
+          kanji: "上",
+          reading: "うえ",
+          semanticCore: "higher position",
+          example: { JP: "上", reading: "うえ", EN: "above" },
+          category: "direction",
+        },
+        {
+          kanji: "下",
+          reading: "した",
+          semanticCore: "lower position",
+          example: { JP: "下", reading: "した", EN: "below" },
+          category: "direction",
+        },
+        {
+          kanji: "中",
+          reading: "なか",
+          semanticCore: "inside, center",
+          example: { JP: "中", reading: "なか", EN: "inside" },
+          category: "direction",
+        },
+        {
+          kanji: "外",
+          reading: "そと",
+          semanticCore: "outside, external",
+          example: { JP: "外国", reading: "がいこく", EN: "foreign country" },
+          category: "direction",
+        },
+        {
+          kanji: "東",
+          reading: "ひがし",
+          semanticCore: "east, rising sun",
+          example: { JP: "東京", reading: "とうきょう", EN: "Tokyo" },
+          category: "direction",
+        },
+        {
+          kanji: "西",
+          reading: "にし",
+          semanticCore: "west",
+          example: { JP: "西口", reading: "にしぐち", EN: "west exit" },
+          category: "direction",
+        },
+        {
+          kanji: "南",
+          reading: "みなみ",
+          semanticCore: "south",
+          example: { JP: "南口", reading: "みなみぐち", EN: "south exit" },
+          category: "direction",
+        },
+        {
+          kanji: "北",
+          reading: "きた",
+          semanticCore: "north",
+          example: { JP: "北口", reading: "きたぐち", EN: "north exit" },
+          category: "direction",
+        },
+        {
+          kanji: "入",
+          reading: "い",
+          semanticCore: "entering, insertion",
+          example: { JP: "入口", reading: "いりぐち", EN: "entrance" },
+          category: "direction",
+        },
+        {
+          kanji: "出",
+          reading: "で",
+          semanticCore: "exiting, emergence",
+          example: { JP: "出口", reading: "でぐち", EN: "exit" },
+          category: "direction",
+        },
+
+        // Places / transport
+        {
+          kanji: "駅",
+          reading: "えき",
+          semanticCore: "station, transit node",
+          example: {
+            JP: "東京駅",
+            reading: "とうきょうえき",
+            EN: "Tokyo Station",
+          },
+          category: "places",
+        },
+        {
+          kanji: "電",
+          reading: "でん",
+          semanticCore: "electricity",
+          example: { JP: "電車", reading: "でんしゃ", EN: "train" },
+          category: "places",
+        },
+        {
+          kanji: "車",
+          reading: "しゃ",
+          semanticCore: "vehicle",
+          example: { JP: "電車", reading: "でんしゃ", EN: "train" },
+          category: "places",
+        },
+        {
+          kanji: "道",
+          reading: "みち",
+          semanticCore: "road, path, way",
+          example: { JP: "道", reading: "みち", EN: "road" },
+          category: "places",
+        },
+        {
+          kanji: "山",
+          reading: "やま",
+          semanticCore: "mountain, elevation",
+          example: { JP: "富士山", reading: "ふじさん", EN: "Mt. Fuji" },
+          category: "places",
+        },
+        {
+          kanji: "川",
+          reading: "かわ",
+          semanticCore: "river, flow",
+          example: { JP: "川", reading: "かわ", EN: "river" },
+          category: "places",
+        },
+        {
+          kanji: "空",
+          reading: "くう",
+          semanticCore: "sky, emptiness",
+          example: { JP: "空港", reading: "くうこう", EN: "airport" },
+          category: "places",
+        },
+
+        // Food / daily
+        {
+          kanji: "食",
+          reading: "しょく",
+          semanticCore: "eating, food",
+          example: { JP: "食べる", reading: "たべる", EN: "to eat" },
+          category: "food",
+        },
+        {
+          kanji: "飲",
+          reading: "の",
+          semanticCore: "drinking, swallowing",
+          example: { JP: "飲み物", reading: "のみもの", EN: "drink" },
+          category: "food",
+        },
+        {
+          kanji: "水",
+          reading: "みず",
+          semanticCore: "water, liquid",
+          example: { JP: "水", reading: "みず", EN: "water" },
+          category: "food",
+        },
+        {
+          kanji: "米",
+          reading: "こめ",
+          semanticCore: "rice, grain",
+          example: { JP: "白米", reading: "はくまい", EN: "white rice" },
+          category: "food",
+        },
+        {
+          kanji: "肉",
+          reading: "にく",
+          semanticCore: "meat, flesh",
+          example: { JP: "牛肉", reading: "ぎゅうにく", EN: "beef" },
+          category: "food",
+        },
+        {
+          kanji: "魚",
+          reading: "さかな",
+          semanticCore: "fish, seafood",
+          example: { JP: "魚", reading: "さかな", EN: "fish" },
+          category: "food",
+        },
+        {
+          kanji: "店",
+          reading: "みせ",
+          semanticCore: "shop, store",
+          example: { JP: "店", reading: "みせ", EN: "shop" },
+          category: "daily",
+        },
+        {
+          kanji: "買",
+          reading: "か",
+          semanticCore: "buying, purchase",
+          example: { JP: "買う", reading: "かう", EN: "to buy" },
+          category: "daily",
+        },
+        {
+          kanji: "金",
+          reading: "きん",
+          semanticCore: "money, value",
+          example: { JP: "料金", reading: "りょうきん", EN: "fee" },
+          category: "daily",
+        },
+
+        // Verbs
+        {
+          kanji: "行",
+          reading: "い",
+          semanticCore: "going, movement",
+          example: { JP: "行く", reading: "いく", EN: "to go" },
+          category: "verbs",
+        },
+        {
+          kanji: "来",
+          reading: "く",
+          semanticCore: "coming, arrival",
+          example: { JP: "来る", reading: "くる", EN: "to come" },
+          category: "verbs",
+        },
+        {
+          kanji: "見",
+          reading: "み",
+          semanticCore: "seeing, perception",
+          example: { JP: "見る", reading: "みる", EN: "to see" },
+          category: "verbs",
+        },
+        {
+          kanji: "聞",
+          reading: "き",
+          semanticCore: "hearing, asking",
+          example: { JP: "聞く", reading: "きく", EN: "to listen" },
+          category: "verbs",
+        },
+        {
+          kanji: "話",
+          reading: "はな",
+          semanticCore: "speech, conversation",
+          example: { JP: "話す", reading: "はなす", EN: "to speak" },
+          category: "verbs",
+        },
+        {
+          kanji: "休",
+          reading: "やす",
+          semanticCore: "rest, pause",
+          example: { JP: "休む", reading: "やすむ", EN: "to rest" },
+          category: "verbs",
+        },
+        {
+          kanji: "使",
+          reading: "つか",
+          semanticCore: "use, employ",
+          example: { JP: "使う", reading: "つかう", EN: "to use" },
+          category: "verbs",
+        },
+        {
+          kanji: "待",
+          reading: "ま",
+          semanticCore: "waiting, expectation",
+          example: { JP: "待つ", reading: "まつ", EN: "to wait" },
+          category: "verbs",
+        },
+
+        // People / safety
+        {
+          kanji: "人",
+          reading: "ひと",
+          semanticCore: "person, human",
+          example: {
+            JP: "日本人",
+            reading: "にほんじん",
+            EN: "Japanese person",
+          },
+          category: "people",
+        },
+        {
+          kanji: "子",
+          reading: "こ",
+          semanticCore: "child, small",
+          example: { JP: "子ども", reading: "こども", EN: "child" },
+          category: "people",
+        },
+        {
+          kanji: "病",
+          reading: "びょう",
+          semanticCore: "illness, sickness",
+          example: { JP: "病院", reading: "びょういん", EN: "hospital" },
+          category: "safety",
+        },
+        {
+          kanji: "禁",
+          reading: "きん",
+          semanticCore: "prohibition",
+          example: { JP: "禁煙", reading: "きんえん", EN: "no smoking" },
+          category: "safety",
+        },
+        {
+          kanji: "注",
+          reading: "ちゅう",
+          semanticCore: "attention, warning",
+          example: { JP: "注意", reading: "ちゅうい", EN: "caution" },
+          category: "safety",
+        },
+      ];
+
+      // sanity check
+      console.log(coreKanji100_2.length);
+
+      const tbody = document.querySelector("#kanji-table tbody");
+
+      const categories = [...new Set(coreKanji100_2.map((k) => k.category))];
+
+      //   console.log(categories.size);
+
+      const run = () => {
+        coreKanji100_2.forEach((item) => {
+          const cIdx = categories.indexOf(item.category);
+          const bgColor = `hsl(${(cIdx * 360) / categories.length}, 60%, 85%)`;
+
+          console.log(cIdx, bgColor);
+
+          const tr = document.createElement("tr");
+
+          tr.innerHTML = `
+        <td class="kanji">${item.kanji}</td>
+        <td class="reading">${item.semanticCore}</td>
+        <td>${item.mnemonic ?? "?"}</td>
+        <td>${item.example.JP}</td>
+        <td>${item.example.reading}</td>
+        <td>${item.example.EN}</td>
+        <td>${item.category}</td>
+      `;
+
+          tr.setAttribute("style", `background-color: ${bgColor}`);
+
+          tbody.appendChild(tr);
+        });
+      };
+
+      window.onload = run;
+    </script>
+  </body>
+</html>
