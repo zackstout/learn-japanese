@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katakana Flash Drill</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        margin: 24px;
+        line-height: 1.2;
+      }
+      header {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      button {
+        padding: 10px 14px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #f6f6f6;
+      }
+      label {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        user-select: none;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        border: 1px solid #e3e3e3;
+        border-radius: 16px;
+        padding: 16px 12px;
+        text-align: center;
+        background: #fff;
+      }
+      .kana {
+        font-size: 44px;
+        margin-bottom: 8px;
+      }
+      .romaji {
+        font-size: 16px;
+        opacity: 0.75;
+        visibility: hidden;
+      }
+      .show-romaji .romaji {
+        visibility: visible;
+      }
+      .footer {
+        margin-top: 18px;
+        font-size: 14px;
+        opacity: 0.8;
+      }
+      .count {
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button id="reroll">Generate 25</button>
+
+      <label>
+        <input id="showRomaji" type="checkbox" />
+        Show romaji
+      </label>
+
+      <label>
+        <input id="includeDakuten" type="checkbox" />
+        Include dakuten/handakuten (ガ, パ, etc.)
+      </label>
+
+      <span class="count" id="count"></span>
+    </header>
+
+    <main id="grid" class="grid"></main>
+
+    <div class="footer">
+      Tip: say each sound out loud. If it takes &gt;1 second, mark it as "needs
+      work." Press <b>R</b> to re-roll, <b>Space</b> to toggle romaji.
+    </div>
+
+    <script>
+      // Core katakana (gojūon + small ya/yu/yo + small tsu + n)
+      const BASE = [
+        ["ア", "a"],
+        ["イ", "i"],
+        ["ウ", "u"],
+        ["エ", "e"],
+        ["オ", "o"],
+        ["カ", "ka"],
+        ["キ", "ki"],
+        ["ク", "ku"],
+        ["ケ", "ke"],
+        ["コ", "ko"],
+        ["サ", "sa"],
+        ["シ", "shi"],
+        ["ス", "su"],
+        ["セ", "se"],
+        ["ソ", "so"],
+        ["タ", "ta"],
+        ["チ", "chi"],
+        ["ツ", "tsu"],
+        ["テ", "te"],
+        ["ト", "to"],
+        ["ナ", "na"],
+        ["ニ", "ni"],
+        ["ヌ", "nu"],
+        ["ネ", "ne"],
+        ["ノ", "no"],
+        ["ハ", "ha"],
+        ["ヒ", "hi"],
+        ["フ", "fu"],
+        ["ヘ", "he"],
+        ["ホ", "ho"],
+        ["マ", "ma"],
+        ["ミ", "mi"],
+        ["ム", "mu"],
+        ["メ", "me"],
+        ["モ", "mo"],
+        ["ヤ", "ya"],
+        ["ユ", "yu"],
+        ["ヨ", "yo"],
+        ["ラ", "ra"],
+        ["リ", "ri"],
+        ["ル", "ru"],
+        ["レ", "re"],
+        ["ロ", "ro"],
+        ["ワ", "wa"],
+        ["ヲ", "wo"],
+        ["ン", "n"],
+        ["ャ", "(small) ya"],
+        ["ュ", "(small) yu"],
+        ["ョ", "(small) yo"],
+        ["ッ", "(small) tsu"],
+      ];
+
+      // Dakuten/handakuten (optional)
+      const DAKUTEN = [
+        ["ガ", "ga"],
+        ["ギ", "gi"],
+        ["グ", "gu"],
+        ["ゲ", "ge"],
+        ["ゴ", "go"],
+        ["ザ", "za"],
+        ["ジ", "ji"],
+        ["ズ", "zu"],
+        ["ゼ", "ze"],
+        ["ゾ", "zo"],
+        ["ダ", "da"],
+        ["ヂ", "ji"],
+        ["ヅ", "zu"],
+        ["デ", "de"],
+        ["ド", "do"],
+        ["バ", "ba"],
+        ["ビ", "bi"],
+        ["ブ", "bu"],
+        ["ベ", "be"],
+        ["ボ", "bo"],
+        ["パ", "pa"],
+        ["ピ", "pi"],
+        ["プ", "pu"],
+        ["ペ", "pe"],
+        ["ポ", "po"],
+      ];
+
+      function sampleUnique(arr, n) {
+        // Fisher–Yates shuffle copy, then slice
+        const copy = arr.slice();
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy.slice(0, Math.min(n, copy.length));
+      }
+
+      function render() {
+        const includeDakuten =
+          document.getElementById("includeDakuten").checked;
+        const pool = includeDakuten ? BASE.concat(DAKUTEN) : BASE;
+
+        const picks = sampleUnique(pool, 25);
+
+        const grid = document.getElementById("grid");
+        grid.innerHTML = "";
+
+        for (const [kana, romaji] of picks) {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const k = document.createElement("div");
+          k.className = "kana";
+          k.textContent = kana;
+
+          const r = document.createElement("div");
+          r.className = "romaji";
+          r.textContent = romaji;
+
+          card.appendChild(k);
+          card.appendChild(r);
+          grid.appendChild(card);
+        }
+
+        document.getElementById(
+          "count"
+        ).textContent = `Showing ${picks.length} / ${pool.length}`;
+      }
+
+      function syncRomajiVisibility() {
+        const show = document.getElementById("showRomaji").checked;
+        document.body.classList.toggle("show-romaji", show);
+      }
+
+      // Wire up UI
+      document.getElementById("reroll").addEventListener("click", render);
+      document
+        .getElementById("showRomaji")
+        .addEventListener("change", syncRomajiVisibility);
+      document
+        .getElementById("includeDakuten")
+        .addEventListener("change", render);
+
+      // Keyboard shortcuts
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "r" || e.key === "R") render();
+        if (e.key === " ") {
+          e.preventDefault();
+          const cb = document.getElementById("showRomaji");
+          cb.checked = !cb.checked;
+          syncRomajiVisibility();
+        }
+      });
+
+      // Initial
+      syncRomajiVisibility();
+      render();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+猫が好きです。
+ねこ　が　すき　です。
+Neko ga suki desu.
+(I) like cats.
+
+サッカーが好きです。
+サッカー　が　すき　です。
+Sakkā ga suki desu.
+(I) like soccer.
+
+車が大好きです。
+くるま　が　だいすき　です。
+Kuruma ga daisuki desu.
+(I) really like cars.
+
+コーヒーが好きじゃないです。
+コーヒー　が　すき　じゃない　です。
+Kōhī ga suki janai desu.
+(I) don’t like coffee.
+
+チョコレートが嫌いです。
+チョコレート　が　きらい　です。
+Chokorēto ga kirai desu.
+(I) hate chocolate.
+
+私はサッカーが好きです。
+わたし　は　サッカー　が　すき　です。
+Watashi wa sakkā ga suki desu.
+I like soccer.
+
+お兄さんは車が好きです。
+おにいさん　は　くるま　が　すき　です。
+Onīsan wa kuruma ga suki desu.
+(My) older brother likes cars.
+
+お母さんは猫が嫌いです。
+おかあさん　は　ねこ　が　きらい　です。
+Okāsan wa neko ga kirai desu.
+(My) mom hates cats.
+
+スポーツが好きですか？
+スポーツ　が　すき　です　か？
+Supōtsu ga suki desu ka?
+Do (you) like sports?
+
+寿司が好きですか？
+すし　が　すき　です　か？
+Sushi ga suki desu ka?
+Do (you) like sushi?
+
+いいえ、好きじゃないです。
+いいえ、　すき　じゃない　です。
+Īe, suki janai desu.
+No, (I) don’t like it.
+
+はい、寿司が好きです。
+はい、　すし　が　すき　です。
+Hai, sushi ga suki desu.
+Yes, (I) like sushi.
+
+チョコレートが好きです。甘いです。
+チョコレート　が　すき　です。　あまい　です。
+Chokorēto ga suki desu. Amai desu.
+(I) like chocolate. It is sweet.
+
+サッカーが好きです。楽しいです。
+サッカー　が　すき　です。　たのしい　です。
+Sakkā ga suki desu. Tanoshī desu.
+(I) like soccer. It is fun.
+
+日本語が好きです。面白いです。
+にほんご　が　すき　です。　おもしろい　です。
+Nihongo ga suki desu. Omoshiroi desu.
+(I) like Japanese. It is interesting.
+
+日本語が上手です。
+にほんご　が　じょうず　です。
+Nihongo ga jōzu desu.
+(I) am good at Japanese.
+
+サッカーが下手です。
+サッカー　が　へた　です。
+Sakkā ga heta desu.
+(I) am bad at soccer.
+
+お父さんはサッカーが上手です。
+おとうさん　は　サッカー　が　じょうず　です。
+Otōsan wa sakkā ga jōzu desu.
+(My) dad is good at soccer.

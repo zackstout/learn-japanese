@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe
+      src="https://360.thormobile.net/esterocc/mobile/"
+      width="100%"
+      height="600px"
+      frameborder="0"
+      sandbox="allow-scripts allow-same-origin"
+    >
+    </iframe>
+  </body>
+
+  <script>
+    setTimeout(() => {
+      const iframe = document.querySelector("iframe");
+      try {
+        const radarLink = iframe.contentDocument.querySelector(
+          'a[href="#"]:contains("RADAR MAP")'
+        );
+        // if (radarLink) radarLink.click();
+      } catch (e) {
+        console.log("Cross-origin access blocked");
+      }
+    }, 3000);
+  </script>
+</html>

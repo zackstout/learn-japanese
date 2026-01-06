@@ -1,0 +1,60 @@
+誰が学生ですか？
+だれ　が　がくせい　です　か？
+Dare ga gakusei desu ka?
+Who is the student?
+
+何が美味しいですか？
+なに　が　おいしい　です　か？
+Nani ga oishī desu ka?
+What is delicious?
+
+誰が先生ですか？
+だれ　が　せんせい　です　か？
+Dare ga sensei desu ka?
+Who is the teacher?
+
+ケーキが美味しいです。
+ケーキ　が　おいしい　です。
+*Kēki* ga oishī desu.
+The *cake* is delicious.
+
+山田さんが優しいです。
+やまだ　さん　が　やさしい　です。
+Yamada-san ga yasashī desu.
+Yamada is kind.
+
+チョコレートが甘いです。
+チョコレート　が　あまい　です。
+*Chokorēto* ga amai desu.
+*Chocolate* is sweet.
+
+コーヒーは苦いです。
+コーヒー　は　にがい　です。
+Kōhī wa *nigai* desu.
+Coffee is *bitter*.
+
+コーヒーが苦いです。
+コーヒー　が　にがい　です。
+*Kōhī* ga nigai desu.
+*Coffee* is bitter.
+
+この本は話が面白いです。
+この　ほん　は　はなし　が　おもしろい　です。
+Kono hon wa hanashi ga omoshiroi desu.
+The story (in) this book is interesting.
+
+山田さんは背が高いです。
+山田さん　は　せ　が　たかい　です。
+Yamada-san wa se ga takai desu.
+Yamada is tall.
+
+桜さんは目が青いです。
+さくら　さん　は　め　が　あおい　です。
+Sakura-san wa me ga aoi desu.
+Sakura (has) blue-colored eyes.
+
+田中さんは髪の毛が長いです。
+たなか　さん　は 　かみのけ　が　ながい　です。
+Tanaka-san wa kaminoke ga nagai desu.
+Tanaka (has) long hair.
+

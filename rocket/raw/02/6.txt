@@ -1,0 +1,104 @@
+10時です。
+じゅう　じ　です。
+Jū-ji desu.
+It is ten o’clock.
+
+午前8時です。
+ごぜん　はち　じ　です。
+Gozen hachi-ji desu.
+It is 8 AM.
+
+午後11時です。
+ごご　じゅういち　じ　です。
+Gogo jūichi-ji desu.
+It is 11 PM.
+
+1時頃
+いち　じ　ごろ
+Ichi-ji goro
+about one o’clock
+
+午前8時50分です。
+ごぜん　はち　じ　ごじゅっぷん　です。
+Gozen hachi-ji gojuppun desu.
+It is 8:50 AM.
+
+10時半です。
+じゅうじ　はん　です。
+Jū-ji han desu.
+It is half-past ten.
+
+今は3時です。
+いま　は　さん　じ　です。
+Ima wa san-ji desu.
+It is three o’clock now.
+
+何時ですか？
+なん　じ　です　か？
+Nan-ji desu ka?
+What time is it?
+
+今は何時ですか？
+いま　は　なん　じ　です　か？
+Ima wa nan-ji desu ka?
+What time is it now?
+
+電車は何時ですか？
+でんしゃ　は　なん　じ　です　か？
+Densha wa nan-ji desu ka?
+What time is the train?
+
+仕事は9時から5時までです。
+しごと　は　く　じ　から　ご　じ　まで　です。
+Shigoto wa ku-ji kara go-ji made desu.
+(My) job is from nine to five.
+
+家から駅まで何分ですか？
+いえ　から　えき　まで　なん　ぷん　です　か？
+Ie kara eki made nan-pun desu ka?
+How many minutes is it from the house to the train station?
+
+テストは何時からですか？
+テスト　は　なん　じ　から　です　か？
+Tesuto wa nan-ji kara desu ka?
+What time does the test start?
+
+テストは3時までです。
+テスト　は　さん　じ　まで　です。
+Tesuto wa san-ji made desu.
+The test finishes at three o’clock.
+
+何時間ですか？
+なん　じかん　です　か？
+Nan-jikan desu ka?
+How many hours long is it?
+
+学校は6時間です。
+がっこう　は　ろく　じかん　です。
+Gakkō wa roku-jikan desu.
+School is six hours long.
+
+3時間くらい
+さん　じかん　くらい
+san-jikan kurai
+about three hours long
+
+4ヶ月間
+よん　かげつ　かん
+yon-kagetsu-kan
+four month period
+
+4年間
+よ　ねん　かん
+yo-nen-kan
+four year period
+
+6ヶ月間
+ろっかげつ　かん
+rokkagetsu-kan
+six month period
+
+2日間
+ふつか　かん
+futsuka-kan
+two day period

@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Japanese Lessons</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .controls {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+      }
+      select {
+        padding: 8px 12px;
+        margin: 0 10px 10px 0;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .lesson-content {
+        margin-top: 20px;
+      }
+      .phrase {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fafafa;
+      }
+      .japanese {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      .hiragana {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 5px;
+      }
+      .romaji {
+        font-size: 14px;
+        color: #888;
+        opacity: 0.1;
+        margin-bottom: 5px;
+      }
+      .translation {
+        font-size: 16px;
+        color: #333;
+        font-style: italic;
+      }
+      .lesson-header {
+        background-color: #e3f2fd;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .no-data {
+        text-align: center;
+        color: #888;
+        font-style: italic;
+        padding: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Japanese Lessons</h1>
+
+    <div class="controls">
+      <label for="moduleSelect">Module:</label>
+      <select id="moduleSelect">
+        <option value="">Select a module</option>
+      </select>
+
+      <label for="lessonSelect">Lesson:</label>
+      <select id="lessonSelect" disabled>
+        <option value="">Select a lesson</option>
+      </select>
+    </div>
+
+    <div class="lesson-content" id="lessonContent">
+      <div class="no-data">Select a module and lesson to view content</div>
+    </div>
+
+    <script>
+      const data = {
+        "01": [
+          {
+            rows: [
+              {
+                full: "初めまして。",
+                hiragana: "はじめまして。",
+                romaji: "Hajimemashite.",
+                translation: "Nice to meet you.",
+              },
+              {
+                full: "お名前は何ですか?",
+                hiragana: "おなまえ　は　なん　です　か？",
+                romaji: "Onamae wa nan desu ka?",
+                translation: "What is (your) name?",
+              },
+              {
+                full: "私の名前は鈴木翔太です。",
+                hiragana: "わたし　の　なまえ　は　すずき　しょうた　です。",
+                romaji: "Watashi no namae wa Suzuki Shōta desu.",
+                translation: "My name is Shota Suzuki.",
+              },
+              {
+                full: "あなたの名前は何ですか？",
+                hiragana: "あなた　の　なまえ　は　なん　です　か？",
+                romaji: "Anata no namae wa nan desu ka?",
+                translation: "What is your name?",
+              },
+              {
+                full: "私は山口沙也加です。",
+                hiragana: "わたし　は　やまぐち　さやか　です。",
+                romaji: "Watashi wa Yamaguchi Sayaka desu.",
+                translation: "I am Sayaka Yamaguchi.",
+              },
+              {
+                full: "よろしくお願いします。",
+                hiragana: "よろしく　おねがいします。",
+                romaji: "Yoroshiku onegaishimasu.",
+                translation: "Nice to meet you.",
+              },
+              {
+                full: "こちらこそよろしくお願いします。",
+                hiragana: "こちら　こそ　よろしく　おねがいします。",
+                romaji: "Kochira koso yoroshiku onegaishimasu.",
+                translation: "Nice to meet you too.",
+              },
+              {
+                full: "ロケット日本語へようこそ！",
+                hiragana: "ロケット　にほんご　へ　ようこそ！",
+                romaji: "Roketto Nihongo e yōkoso!",
+                translation: "Welcome to Rocket Japanese!",
+              },
+              {
+                full: "よくできました！",
+                hiragana: "よく　できました！",
+                romaji: "Yoku dekimashita!",
+                translation: "Well done!",
+              },
+              {
+                full: "どこですか？",
+                hiragana: "どこ　です　か？",
+                romaji: "Doko desu ka?",
+                translation: "Where is it?",
+              },
+              {
+                full: "いつですか？",
+                hiragana: "いつ　です　か？",
+                romaji: "Itsu desu ka?",
+                translation: "When is it?",
+              },
+              {
+                full: "私のペン",
+                hiragana: "わたし　の　ペン",
+                romaji: "watashi no pen",
+                translation: "my pen",
+              },
+              {
+                full: "私の本",
+                hiragana: "わたし　の　ほん",
+                romaji: "watashi no hon",
+                translation: "my book",
+              },
+              {
+                full: "すみません。",
+                hiragana: "すみません。",
+                romaji: "Sumimasen.",
+                translation: "Excuse me. / Sorry.",
+              },
+              {
+                full: "またね。",
+                hiragana: "また　ね。",
+                romaji: "Mata ne.",
+                translation: "See you later.",
+              },
+            ],
+            module: "01",
+            lesson: 1,
+            title: "Basic introductions",
+          },
+          {
+            rows: [
+              {
+                full: "沙也加さんはどこから来ましたか？",
+                hiragana: "さやか　さん　は　どこ　から　きました　か？",
+                romaji: "Sayaka-san wa doko kara kimashita ka?",
+                translation: "Where (are you) from, Sayaka?",
+              },
+              {
+                full: "日本から来ました。",
+                hiragana: "にほん　から　きました。",
+                romaji: "Nihon kara kimashita.",
+                translation: "(I am) from Japan.",
+              },
+              {
+                full: "アメリカから来ました。",
+                hiragana: "アメリカ　から　きました。",
+                romaji: "Amerika kara kimashita.",
+                translation: "(I am) from America.",
+              },
+              {
+                full: "日本のどこですか？",
+                hiragana: "にほん　の　どこ　です　か？",
+                romaji: "Nihon no doko desu ka?",
+                translation: "What part of Japan (are you from)?",
+              },
+              {
+                full: "カリフォルニアです。",
+                hiragana: "カリフォルニア　です。",
+                romaji: "Kariforunia desu.",
+                translation: "(I) am (from) California.",
+              },
+              {
+                full: "今日もよろしくお願いします。",
+                hiragana: "きょう　も　よろしく　おねがいします。",
+                romaji: "Kyō mo yoroshiku onegaishimasu.",
+                translation: "Let’s do (our) best today.",
+              },
+              {
+                full: "準備はいいですか？",
+                hiragana: "じゅんび　は　いい　です　か？",
+                romaji: "Junbi wa ī desu ka?",
+                translation: "Are (you) ready?",
+              },
+              {
+                full: "スコットランドから来ました。",
+                hiragana: "スコットランド　から　きました。",
+                romaji: "Sukottorando kara kimashita.",
+                translation: "(I am) from Scotland.",
+              },
+              {
+                full: "ドイツから来ました。",
+                hiragana: "ドイツ　から　きました。",
+                romaji: "Doitsu kara kimashita.",
+                translation: "(I am) from Germany.",
+              },
+              {
+                full: "何人ですか？",
+                hiragana: "なに　じん　です　か？",
+                romaji: "Nani-jin desu ka?",
+                translation: "What nationality are (you)?",
+              },
+              {
+                full: "お疲れ様でした。",
+                hiragana: "おつかれさま　でした。",
+                romaji: "Otsukaresama deshita.",
+                translation: "Great work.",
+              },
+              { full: "" },
+            ],
+            module: "01",
+            lesson: 2,
+            title: "Where are you from?",
+          },
+          {
+            rows: [
+              {
+                full: "趣味は何ですか？",
+                hiragana: "しゅみ　は　なん　です　か？",
+                romaji: "Shumi wa nan desu ka?",
+                translation: "What are (your) hobbies?",
+              },
+              {
+                full: "水泳が好きです。",
+                hiragana: "すいえい　が　すき　です。",
+                romaji: "Suiei ga suki desu.",
+                translation: "(I) like swimming.",
+              },
+              {
+                full: "私も水泳が好きです。",
+                hiragana: "わたし　も　すいえい　が　すき　です。",
+                romaji: "Watashi mo suiei ga suki desu.",
+                translation: "I like swimming too.",
+              },
+              {
+                full: "料理が好きですか？",
+                hiragana: "りょうり　が　すき　です　か？",
+                romaji: "Ryōri ga suki desu ka?",
+                translation: "Do (you) like cooking?",
+              },
+              {
+                full: "いいえ、好きじゃないです。",
+                hiragana: "いいえ、　すき　じゃない　です。",
+                romaji: "Īe, suki janai desu.",
+                translation: "No, (I) don't like it.",
+              },
+              {
+                full: "どうして好きじゃないんですか？",
+                hiragana: "どうして　すき　じゃない　ん　です　か？",
+                romaji: "Dōshite suki janai n desu ka?",
+                translation: "Why don't (you) like it?",
+              },
+              {
+                full: "下手だからです。",
+                hiragana: "へた　だから　です。",
+                romaji: "Heta dakara desu.",
+                translation: "Because (I) am bad at it.",
+              },
+              {
+                full: "皆さん、こんにちは。",
+                hiragana: "みなさん、　こんにちは。",
+                romaji: "Minasan, konnichiwa.",
+                translation: "Hello, everyone.",
+              },
+              {
+                full: "聞いてみましょう。",
+                hiragana: "きいて　みましょう。",
+                romaji: "Kīte mimashō.",
+                translation: "Let’s try listening.",
+              },
+              {
+                full: "これは何ですか？",
+                hiragana: "これ　は　なん　です　か？",
+                romaji: "Kore wa nan desu ka?",
+                translation: "What is this?",
+              },
+              {
+                full: "素晴らしい！",
+                hiragana: "すばらしい！",
+                romaji: "Subarashī!",
+                translation: "Wonderful!",
+              },
+              { full: "" },
+            ],
+            module: "01",
+            lesson: 3,
+            title: "Making friends",
+          },
+          {
+            rows: [
+              {
+                full: "可愛いです。",
+                hiragana: "かわいい　です。",
+                romaji: "Kawaī desu.",
+                translation: "It is cute.",
+              },
+              {
+                full: "学生です。",
+                hiragana: "がくせい　です。",
+                romaji: "Gakusei desu.",
+                translation: "(I) am a student.",
+              },
+              {
+                full: "私は学生です。",
+                hiragana: "わたし　は　がくせい　です。",
+                romaji: "Watashi wa gakusei desu.",
+                translation: "I am a student.",
+              },
+              {
+                full: "寿司は美味しいです。",
+                hiragana: "すし　は　おいしい　です。",
+                romaji: "Sushi wa oishī desu.",
+                translation: "Sushi is delicious.",
+              },
+              {
+                full: "日本は美しいです。",
+                hiragana: "にほん　は　うつくしい　です。",
+                romaji: "Nihon wa utsukushī desu.",
+                translation: "Japan is beautiful.",
+              },
+              {
+                full: "美味しいですか？",
+                hiragana: "おいしい　です　か？",
+                romaji: "Oishī desu ka?",
+                translation: "Is it delicious?",
+              },
+              { full: "" },
+            ],
+            module: "01",
+            lesson: 4,
+            title: "Introducing yourself",
+          },
+          {
+            rows: [
+              {
+                full: "猫が好きです。",
+                hiragana: "ねこ　が　すき　です。",
+                romaji: "Neko ga suki desu.",
+                translation: "(I) like cats.",
+              },
+              {
+                full: "サッカーが好きです。",
+                hiragana: "サッカー　が　すき　です。",
+                romaji: "Sakkā ga suki desu.",
+                translation: "(I) like soccer.",
+              },
+              {
+                full: "車が大好きです。",
+                hiragana: "くるま　が　だいすき　です。",
+                romaji: "Kuruma ga daisuki desu.",
+                translation: "(I) really like cars.",
+              },
+              {
+                full: "コーヒーが好きじゃないです。",
+                hiragana: "コーヒー　が　すき　じゃない　です。",
+                romaji: "Kōhī ga suki janai desu.",
+                translation: "(I) don’t like coffee.",
+              },
+              {
+                full: "チョコレートが嫌いです。",
+                hiragana: "チョコレート　が　きらい　です。",
+                romaji: "Chokorēto ga kirai desu.",
+                translation: "(I) hate chocolate.",
+              },
+              {
+                full: "私はサッカーが好きです。",
+                hiragana: "わたし　は　サッカー　が　すき　です。",
+                romaji: "Watashi wa sakkā ga suki desu.",
+                translation: "I like soccer.",
+              },
+              {
+                full: "お兄さんは車が好きです。",
+                hiragana: "おにいさん　は　くるま　が　すき　です。",
+                romaji: "Onīsan wa kuruma ga suki desu.",
+                translation: "(My) older brother likes cars.",
+              },
+              {
+                full: "お母さんは猫が嫌いです。",
+                hiragana: "おかあさん　は　ねこ　が　きらい　です。",
+                romaji: "Okāsan wa neko ga kirai desu.",
+                translation: "(My) mom hates cats.",
+              },
+              {
+                full: "スポーツが好きですか？",
+                hiragana: "スポーツ　が　すき　です　か？",
+                romaji: "Supōtsu ga suki desu ka?",
+                translation: "Do (you) like sports?",
+              },
+              {
+                full: "寿司が好きですか？",
+                hiragana: "すし　が　すき　です　か？",
+                romaji: "Sushi ga suki desu ka?",
+                translation: "Do (you) like sushi?",
+              },
+              {
+                full: "いいえ、好きじゃないです。",
+                hiragana: "いいえ、　すき　じゃない　です。",
+                romaji: "Īe, suki janai desu.",
+                translation: "No, (I) don’t like it.",
+              },
+              {
+                full: "はい、寿司が好きです。",
+                hiragana: "はい、　すし　が　すき　です。",
+                romaji: "Hai, sushi ga suki desu.",
+                translation: "Yes, (I) like sushi.",
+              },
+              {
+                full: "チョコレートが好きです。甘いです。",
+                hiragana: "チョコレート　が　すき　です。　あまい　です。",
+                romaji: "Chokorēto ga suki desu. Amai desu.",
+                translation: "(I) like chocolate. It is sweet.",
+              },
+              {
+                full: "サッカーが好きです。楽しいです。",
+                hiragana: "サッカー　が　すき　です。　たのしい　です。",
+                romaji: "Sakkā ga suki desu. Tanoshī desu.",
+                translation: "(I) like soccer. It is fun.",
+              },
+              {
+                full: "日本語が好きです。面白いです。",
+                hiragana: "にほんご　が　すき　です。　おもしろい　です。",
+                romaji: "Nihongo ga suki desu. Omoshiroi desu.",
+                translation: "(I) like Japanese. It is interesting.",
+              },
+              {
+                full: "日本語が上手です。",
+                hiragana: "にほんご　が　じょうず　です。",
+                romaji: "Nihongo ga jōzu desu.",
+                translation: "(I) am good at Japanese.",
+              },
+              {
+                full: "サッカーが下手です。",
+                hiragana: "サッカー　が　へた　です。",
+                romaji: "Sakkā ga heta desu.",
+                translation: "(I) am bad at soccer.",
+              },
+              {
+                full: "お父さんはサッカーが上手です。",
+                hiragana: "おとうさん　は　サッカー　が　じょうず　です。",
+                romaji: "Otōsan wa sakkā ga jōzu desu.",
+                translation: "(My) dad is good at soccer.",
+              },
+            ],
+            module: "01",
+            lesson: 5,
+            title: "To like & not like",
+          },
+          {
+            rows: [
+              {
+                full: "誰が学生ですか？",
+                hiragana: "だれ　が　がくせい　です　か？",
+                romaji: "Dare ga gakusei desu ka?",
+                translation: "Who is the student?",
+              },
+              {
+                full: "何が美味しいですか？",
+                hiragana: "なに　が　おいしい　です　か？",
+                romaji: "Nani ga oishī desu ka?",
+                translation: "What is delicious?",
+              },
+              {
+                full: "誰が先生ですか？",
+                hiragana: "だれ　が　せんせい　です　か？",
+                romaji: "Dare ga sensei desu ka?",
+                translation: "Who is the teacher?",
+              },
+              {
+                full: "ケーキが美味しいです。",
+                hiragana: "ケーキ　が　おいしい　です。",
+                romaji: "*Kēki* ga oishī desu.",
+                translation: "The *cake* is delicious.",
+              },
+              {
+                full: "山田さんが優しいです。",
+                hiragana: "やまだ　さん　が　やさしい　です。",
+                romaji: "Yamada-san ga yasashī desu.",
+                translation: "Yamada is kind.",
+              },
+              {
+                full: "チョコレートが甘いです。",
+                hiragana: "チョコレート　が　あまい　です。",
+                romaji: "*Chokorēto* ga amai desu.",
+                translation: "*Chocolate* is sweet.",
+              },
+              {
+                full: "コーヒーは苦いです。",
+                hiragana: "コーヒー　は　にがい　です。",
+                romaji: "Kōhī wa *nigai* desu.",
+                translation: "Coffee is *bitter*.",
+              },
+              {
+                full: "コーヒーが苦いです。",
+                hiragana: "コーヒー　が　にがい　です。",
+                romaji: "*Kōhī* ga nigai desu.",
+                translation: "*Coffee* is bitter.",
+              },
+              {
+                full: "この本は話が面白いです。",
+                hiragana: "この　ほん　は　はなし　が　おもしろい　です。",
+                romaji: "Kono hon wa hanashi ga omoshiroi desu.",
+                translation: "The story (in) this book is interesting.",
+              },
+              {
+                full: "山田さんは背が高いです。",
+                hiragana: "山田さん　は　せ　が　たかい　です。",
+                romaji: "Yamada-san wa se ga takai desu.",
+                translation: "Yamada is tall.",
+              },
+              {
+                full: "桜さんは目が青いです。",
+                hiragana: "さくら　さん　は　め　が　あおい　です。",
+                romaji: "Sakura-san wa me ga aoi desu.",
+                translation: "Sakura (has) blue-colored eyes.",
+              },
+              {
+                full: "田中さんは髪の毛が長いです。",
+                hiragana: "たなか　さん　は 　かみのけ　が　ながい　です。",
+                romaji: "Tanaka-san wa kaminoke ga nagai desu.",
+                translation: "Tanaka (has) long hair.",
+              },
+              { full: "" },
+            ],
+            module: "01",
+            lesson: 6,
+            title: "Describing things",
+          },
+        ],
+        "02": [
+          {
+            rows: [
+              {
+                full: "日本語が話せますか？",
+                hiragana: "にほんご　が　はなせます　か？",
+                romaji: "Nihongo ga hanasemasu ka?",
+                translation: "Can (you) speak Japanese?",
+              },
+              {
+                full: "はい。でも少しだけです。",
+                hiragana: "はい。　でも　すこし　だけ　です。",
+                romaji: "Hai. Demo sukoshi dake desu.",
+                translation: "Yes. But only a little.",
+              },
+              {
+                full: "日本語がお上手ですね！",
+                hiragana: "にほんご　が　おじょうず　です　ね！",
+                romaji: "Nihongo ga ojōzu desu ne!",
+                translation: "(Your) Japanese is good!",
+              },
+              {
+                full: "どれぐらい勉強していますか？",
+                hiragana: "どれぐらい　べんきょう　して　います　か？",
+                romaji: "Doregurai benkyō shite imasu ka?",
+                translation: "How long have (you) been studying for?",
+              },
+              {
+                full: "もう少しゆっくりお願いします。",
+                hiragana: "もう　すこし　ゆっくり　おねがいします。",
+                romaji: "Mō sukoshi yukkuri onegaishimasu.",
+                translation: "A little more slowly please.",
+              },
+              {
+                full: "もちろんです。",
+                hiragana: "もちろん　です。　",
+                romaji: "Mochiron desu.",
+                translation: "Of course.",
+              },
+              {
+                full: "どれぐらい日本語を勉強していますか？",
+                hiragana:
+                  "どれぐらい　にほんご　を　べんきょう　して　います　か？",
+                romaji: "Doregurai Nihongo o benkyō shite imasu ka?",
+                translation: "How long have (you) been studying Japanese for?",
+              },
+              {
+                full: "1ヶ月間勉強しています。",
+                hiragana: "いっかげつ　かん　べんきょう　して　います。",
+                romaji: "Ikkagetsu-kan benkyō shite imasu.",
+                translation: "(I) have been studying for one month.",
+              },
+              {
+                full: "英語が話せますか？",
+                hiragana: "えいご　が　はなせます　か？",
+                romaji: "Eigo ga hanasemasu ka?",
+                translation: "Can (you) speak English?",
+              },
+              {
+                full: "日本語が話せます。",
+                hiragana: "にほんご　が　はなせます。",
+                romaji: "Nihongo ga hanasemasu.",
+                translation: "(I) can speak Japanese.",
+              },
+              {
+                full: "まだまだです。",
+                hiragana: "まだ　まだ　です。",
+                romaji: "Mada mada desu.",
+                translation: "(I) still have a long way to go.",
+              },
+              {
+                full: "りんごを食べています",
+                hiragana: "りんご　を　たべて　います。",
+                romaji: "Ringo o tabete imasu.",
+                translation: "(I am) eating an apple.",
+              },
+              {
+                full: "水を飲んでいます。",
+                hiragana: "みず　を　のんで　います。",
+                romaji: "Mizu o nonde imasu.",
+                translation: "(I am) drinking water.",
+              },
+              { full: "" },
+            ],
+            module: "02",
+            lesson: 1,
+            title: "Survival Phrases",
+          },
+          {
+            rows: [
+              {
+                full: "温かい飲み物はありますか？",
+                hiragana: "あたたかい　のみもの　は　あります　か？",
+                romaji: "Atatakai nomimono wa arimasu ka?",
+                translation: "Do (you) have hot drinks?",
+              },
+              {
+                full: "はい、コーヒーとお茶があります。",
+                hiragana: "はい、　コーヒー　と　おちゃ　が　あります。",
+                romaji: "Hai, kōhī to ocha ga arimasu.",
+                translation: "Yes, (we) have coffee and green tea.",
+              },
+              {
+                full: "お茶をください。",
+                hiragana: "おちゃ　を　ください。　",
+                romaji: "Ocha o kudasai.",
+                translation: "(I) will have a (cup of) green tea.",
+              },
+              {
+                full: "いくらですか？",
+                hiragana: "いくら　です　か？",
+                romaji: "Ikura desu ka?",
+                translation: "How much is it?",
+              },
+              {
+                full: "250円です。",
+                hiragana: "にひゃくごじゅう　えん　です。",
+                romaji: "Nihyakugojū en desu.",
+                translation: "It is 250 yen.",
+              },
+              {
+                full: "はい、500円です。",
+                hiragana: "はい、　ごひゃく　えん　です。",
+                romaji: "Hai, gohyaku en desu.",
+                translation: "Here (you) are, 500 yen.",
+              },
+              {
+                full: "250円のお釣りです。",
+                hiragana: "にひゃくごじゅう　えん　の　おつり　です。",
+                romaji: "Nihyakugojū en no otsuri desu.",
+                translation: "250 yen change.",
+              },
+              {
+                full: "聞きましょう！",
+                hiragana: "ききましょう！",
+                romaji: "Kikimashō!",
+                translation: "Let’s listen!",
+              },
+              {
+                full: "本はあります。",
+                hiragana: "ほん　は　あります。",
+                romaji: "Hon wa arimasu.",
+                translation: "(I) have a book.",
+              },
+              {
+                full: "甘い食べ物はありますか？",
+                hiragana: "あまい　たべもの　は　あります　か？",
+                romaji: "Amai tabemono wa arimasu ka?",
+                translation: "Do (you) have (any) sweet food?",
+              },
+              {
+                full: "犬はいます。",
+                hiragana: "いぬ　は　います。",
+                romaji: "Inu wa imasu.",
+                translation: "(I) have a dog.",
+              },
+              {
+                full: "先生はいます。",
+                hiragana: "せんせい　は　います。",
+                romaji: "Sensei wa imasu.",
+                translation: "There is a teacher.",
+              },
+              {
+                full: "コーヒーをください。",
+                hiragana: "コーヒー　を　ください。",
+                romaji: "Kōhī o kudasai.",
+                translation: "(I) will have a (cup of) coffee.",
+              },
+              { full: "" },
+            ],
+            module: "02",
+            lesson: 2,
+            title: "Tea Time",
+          },
+          {
+            rows: [
+              {
+                full: "沙也加さん、明日は予定がありますか？",
+                hiragana:
+                  "さやか　さん、　あした　は　よてい　が　あります　か？",
+                romaji: "Sayaka-san, ashita wa yotei ga arimasu ka?",
+                translation: "Sayaka, do (you) have plans tomorrow?",
+              },
+              {
+                full: "いいえ、ありません。",
+                hiragana: "いいえ、　ありません。",
+                romaji: "Īe, arimasen.",
+                translation: "No, (I) don’t.",
+              },
+              {
+                full: "どうしてですか？",
+                hiragana: "どうして　です　か？",
+                romaji: "Dōshite desu ka?",
+                translation: "Why is (that)?",
+              },
+              {
+                full: "よかったら、一緒に奈良に行きませんか？",
+                hiragana:
+                  "よかったら、　いっしょ　に　なら　に　いきません　か？",
+                romaji: "Yokattara, issho ni Nara ni ikimasen ka?",
+                translation:
+                  "If (you) like, why don’t (we) go to Nara together?",
+              },
+              {
+                full: "いいですね！",
+                hiragana: "いい　です　ね！",
+                romaji: "Ī desu ne!",
+                translation: "Sounds good!",
+              },
+              {
+                full: "何時に会いましょうか？",
+                hiragana: "なん　じ　に　あいましょう　か？",
+                romaji: "Nan-ji ni aimashō ka?",
+                translation: "What time shall (we) meet?",
+              },
+              {
+                full: "10時はどうですか？",
+                hiragana: "じゅう　じ　は　どう　です　か？",
+                romaji: "Jū-ji wa dō desu ka?",
+                translation: "How about ten o’clock?",
+              },
+              {
+                full: "はい、大丈夫です。",
+                hiragana: "はい、　だいじょうぶ　です。",
+                romaji: "Hai, daijōbu desu.",
+                translation: "Yes, (that) is fine.",
+              },
+              {
+                full: "楽しみにしています！",
+                hiragana: "たのしみ　に　して　います！",
+                romaji: "Tanoshimi ni shite imasu!",
+                translation: "(I am) looking forward to it!",
+              },
+              {
+                full: "沙也加さん、今日は予定がありますか？",
+                hiragana:
+                  "さやか　さん、　きょう　は　よてい　が　あります　か？",
+                romaji: "Sayaka-san, kyō wa yotei ga arimasu ka?",
+                translation: "Sayaka, do (you) have plans today?",
+              },
+              {
+                full: "沙也加さん、明後日は予定がありますか？",
+                hiragana:
+                  "さやか　さん、　あさって　は　よてい　が　あります　か？",
+                romaji: "Sayaka-san, asatte wa yotei ga arimasu ka?",
+                translation:
+                  "Sayaka, do (you) have plans the day after tomorrow?",
+              },
+              {
+                full: "はい、あります。",
+                hiragana: "はい、　あります。",
+                romaji: "Hai, arimasu.",
+                translation: "Yes, (I) do.",
+              },
+              {
+                full: "よかったら、一緒に映画館に行きませんか？",
+                hiragana:
+                  "よかったら、　いっしょ　に　えいがかん　に　いきません　か？",
+                romaji: "Yokattara, issho ni eigakan ni ikimasen ka?",
+                translation:
+                  "If (you) like, why don’t (we) go to the movie theater together?",
+              },
+              {
+                full: "よかったら、一緒に図書館に行きませんか？",
+                hiragana:
+                  "よかったら、　いっしょ　に　としょかん　に　いきません　か？",
+                romaji: "Yokattara, issho ni toshokan ni ikimasen ka?",
+                translation:
+                  "If (you) like, why don’t (we) go to the library together?",
+              },
+              {
+                full: "何時ですか？",
+                hiragana: "なん　じ　です　か？",
+                romaji: "Nan-ji desu ka?",
+                translation: "What time is it?",
+              },
+              { full: "" },
+            ],
+            module: "02",
+            lesson: 3,
+            title: "Making Plans",
+          },
+          {
+            rows: [
+              {
+                full: "奈良はどうやって行きますか？",
+                hiragana: "なら　は　どうやって　いきます　か？",
+                romaji: "Nara wa dōyatte ikimasu ka?",
+                translation: "How do (I) get to Nara?",
+              },
+              {
+                full: "電車で行きます。",
+                hiragana: "でんしゃ　で　いきます。",
+                romaji: "Densha de ikimasu.",
+                translation: "(You) take the train.",
+              },
+              {
+                full: "ここから遠いですか？",
+                hiragana: "ここ　から　とおい　です　か？",
+                romaji: "Koko kara tōi desu ka?",
+                translation: "Is it far from here?",
+              },
+              {
+                full: "京都駅から45分ぐらいです。",
+                hiragana:
+                  "きょうと　えき　から　よんじゅうご　ふん　ぐらい　です。",
+                romaji: "Kyōto-eki kara yonjūgo-fun gurai desu.",
+                translation: "It is about 45 minutes from Kyoto Station.",
+              },
+              {
+                full: "京都駅はどこですか？",
+                hiragana: "きょうと　えき　は　どこ　です　か？",
+                romaji: "Kyōto-eki wa doko desu ka?",
+                translation: "Where is Kyoto Station?",
+              },
+              {
+                full: "あそこです。",
+                hiragana: "あそこ　です。",
+                romaji: "Asoko desu.",
+                translation: "It is over there.",
+              },
+              {
+                full: "ありがとうございました！",
+                hiragana: "ありがとう　ございました！",
+                romaji: "Arigatō gozaimashita!",
+                translation: "Thank you!",
+              },
+              {
+                full: "どういたしまして。",
+                hiragana: "どういたしまして。",
+                romaji: "Dōitashimashite.",
+                translation: "You are welcome.",
+              },
+              {
+                full: "いい発音ですね！",
+                hiragana: "いい　はつおん　です　ね！",
+                romaji: "Ī hatsuon desu ne!",
+                translation: "Good pronunciation!",
+              },
+              {
+                full: "バスで行きます。",
+                hiragana: "バス　で　いきます。",
+                romaji: "Basu de ikimasu.",
+                translation: "(You) go by bus.",
+              },
+              {
+                full: "自転車で行きます。",
+                hiragana: "じてんしゃ　で　いきます。",
+                romaji: "Jitensha de ikimasu.",
+                translation: "(You) go by bicycle.",
+              },
+              {
+                full: "車で行きます。",
+                hiragana: "くるま　で　いきます。",
+                romaji: "Kuruma de ikimasu.",
+                translation: "(You) go by car.",
+              },
+              {
+                full: "歩いて行きます。",
+                hiragana: "あるいて　いきます。",
+                romaji: "Aruite ikimasu.",
+                translation: "(You) go (by) walking.",
+              },
+              {
+                full: "ここから近いですか？",
+                hiragana: "ここ　から　ちかい　です　か？",
+                romaji: "Koko kara chikai desu ka?",
+                translation: "Is it close to here?",
+              },
+              {
+                full: "銀行はどこですか？",
+                hiragana: "ぎんこう　は　どこ　です　か？",
+                romaji: "Ginkō wa doko desu ka?",
+                translation: "Where is the bank?",
+              },
+              {
+                full: "コンビニはどこですか？",
+                hiragana: "コンビニ　は　どこ　です　か？",
+                romaji: "Konbini wa doko desu ka?",
+                translation: "Where is the convenience store?",
+              },
+              { full: "" },
+            ],
+            module: "02",
+            lesson: 4,
+            title: "Getting Directions",
+          },
+          {
+            rows: [
+              {
+                full: "パンは90円です。",
+                hiragana: "パン　は　きゅう　じゅう　えん　です。",
+                romaji: "Pan wa kyūjū-en desu.",
+                translation: "Bread is 90 yen.",
+              },
+              {
+                full: "電話番号は070-898です。",
+                hiragana:
+                  "でんわ　ばんごう　は　ゼロ　なな　ゼロ　はち　きゅう　はち　です。",
+                romaji: "Denwa bangō wa zero nana zero hachi kyū hachi desu.",
+                translation: "The phone number is 070-898.",
+              },
+              {
+                full: "22歳です。",
+                hiragana: "にじゅうに　さい　です。",
+                romaji: "Nijūni-sai desu.",
+                translation: "(I) am 22 years old.",
+              },
+              {
+                full: "私は35歳です。",
+                hiragana: "わたし　は　さんじゅうご　さい　です。",
+                romaji: "Watashi wa sanjūgo-sai desu.",
+                translation: "I am 35 years old.",
+              },
+              {
+                full: "山田さんは40歳です。",
+                hiragana: "やまだ　さん　は　よんじゅっさい　です。",
+                romaji: "Yamada-san wa yonjussai desu.",
+                translation: "Mr. Yamada is 40 years old.",
+              },
+              {
+                full: "何歳ですか？",
+                hiragana: "なん　さい　です　か？",
+                romaji: "Nan-sai desu ka?",
+                translation: "How old are (you)?",
+              },
+              {
+                full: "コーヒーが1つあります。",
+                hiragana: "コーヒー　が　ひとつ　あります。",
+                romaji: "Kōhī ga hitotsu arimasu.",
+                translation: "There is one coffee.",
+              },
+              {
+                full: "りんごが3つあります。",
+                hiragana: "りんご　が　みっつ　あります。",
+                romaji: "Ringo ga mittsu arimasu.",
+                translation: "There are three apples.",
+              },
+            ],
+            module: "02",
+            lesson: 5,
+            title: "Japanese Numbers",
+          },
+          {
+            rows: [
+              {
+                full: "10時です。",
+                hiragana: "じゅう　じ　です。",
+                romaji: "Jū-ji desu.",
+                translation: "It is ten o’clock.",
+              },
+              {
+                full: "午前8時です。",
+                hiragana: "ごぜん　はち　じ　です。",
+                romaji: "Gozen hachi-ji desu.",
+                translation: "It is 8 AM.",
+              },
+              {
+                full: "午後11時です。",
+                hiragana: "ごご　じゅういち　じ　です。",
+                romaji: "Gogo jūichi-ji desu.",
+                translation: "It is 11 PM.",
+              },
+              {
+                full: "1時頃",
+                hiragana: "いち　じ　ごろ",
+                romaji: "Ichi-ji goro",
+                translation: "about one o’clock",
+              },
+              {
+                full: "午前8時50分です。",
+                hiragana: "ごぜん　はち　じ　ごじゅっぷん　です。",
+                romaji: "Gozen hachi-ji gojuppun desu.",
+                translation: "It is 8:50 AM.",
+              },
+              {
+                full: "10時半です。",
+                hiragana: "じゅうじ　はん　です。",
+                romaji: "Jū-ji han desu.",
+                translation: "It is half-past ten.",
+              },
+              {
+                full: "今は3時です。",
+                hiragana: "いま　は　さん　じ　です。",
+                romaji: "Ima wa san-ji desu.",
+                translation: "It is three o’clock now.",
+              },
+              {
+                full: "何時ですか？",
+                hiragana: "なん　じ　です　か？",
+                romaji: "Nan-ji desu ka?",
+                translation: "What time is it?",
+              },
+              {
+                full: "今は何時ですか？",
+                hiragana: "いま　は　なん　じ　です　か？",
+                romaji: "Ima wa nan-ji desu ka?",
+                translation: "What time is it now?",
+              },
+              {
+                full: "電車は何時ですか？",
+                hiragana: "でんしゃ　は　なん　じ　です　か？",
+                romaji: "Densha wa nan-ji desu ka?",
+                translation: "What time is the train?",
+              },
+              {
+                full: "仕事は9時から5時までです。",
+                hiragana: "しごと　は　く　じ　から　ご　じ　まで　です。",
+                romaji: "Shigoto wa ku-ji kara go-ji made desu.",
+                translation: "(My) job is from nine to five.",
+              },
+              {
+                full: "家から駅まで何分ですか？",
+                hiragana: "いえ　から　えき　まで　なん　ぷん　です　か？",
+                romaji: "Ie kara eki made nan-pun desu ka?",
+                translation:
+                  "How many minutes is it from the house to the train station?",
+              },
+              {
+                full: "テストは何時からですか？",
+                hiragana: "テスト　は　なん　じ　から　です　か？",
+                romaji: "Tesuto wa nan-ji kara desu ka?",
+                translation: "What time does the test start?",
+              },
+              {
+                full: "テストは3時までです。",
+                hiragana: "テスト　は　さん　じ　まで　です。",
+                romaji: "Tesuto wa san-ji made desu.",
+                translation: "The test finishes at three o’clock.",
+              },
+              {
+                full: "何時間ですか？",
+                hiragana: "なん　じかん　です　か？",
+                romaji: "Nan-jikan desu ka?",
+                translation: "How many hours long is it?",
+              },
+              {
+                full: "学校は6時間です。",
+                hiragana: "がっこう　は　ろく　じかん　です。",
+                romaji: "Gakkō wa roku-jikan desu.",
+                translation: "School is six hours long.",
+              },
+              {
+                full: "3時間くらい",
+                hiragana: "さん　じかん　くらい",
+                romaji: "san-jikan kurai",
+                translation: "about three hours long",
+              },
+              {
+                full: "4ヶ月間",
+                hiragana: "よん　かげつ　かん",
+                romaji: "yon-kagetsu-kan",
+                translation: "four month period",
+              },
+              {
+                full: "4年間",
+                hiragana: "よ　ねん　かん",
+                romaji: "yo-nen-kan",
+                translation: "four year period",
+              },
+              {
+                full: "6ヶ月間",
+                hiragana: "ろっかげつ　かん",
+                romaji: "rokkagetsu-kan",
+                translation: "six month period",
+              },
+              {
+                full: "2日間",
+                hiragana: "ふつか　かん",
+                romaji: "futsuka-kan",
+                translation: "two day period",
+              },
+            ],
+            module: "02",
+            lesson: 6,
+            title: "Telling the Time",
+          },
+          {
+            rows: [
+              {
+                full: "りんごを食べます。",
+                hiragana: "りんご　を　たべます。",
+                romaji: "Ringo o tabemasu.",
+                translation: "(I) eat an apple.",
+              },
+              {
+                full: "オレンジジュースを飲みます。",
+                hiragana: "オレンジジュース　を　飲みます。",
+                romaji: "Orenji-jūsu o nomimasu.",
+                translation: "(I) drink orange juice.",
+              },
+              {
+                full: "野球をします。",
+                hiragana: "やきゅう　を　します。",
+                romaji: "Yakyū o shimasu.",
+                translation: "(I) play baseball.",
+              },
+              {
+                full: "テレビを見ます。",
+                hiragana: "テレビ　を　みます。",
+                romaji: "Terebi o mimasu.",
+                translation: "(I) watch TV.",
+              },
+              {
+                full: "魚を食べますか？",
+                hiragana: "さかな　を　たべます　か？",
+                romaji: "Sakana o tabemasu ka?",
+                translation: "Do (you) eat fish?",
+              },
+              {
+                full: "ピアノを弾きません。",
+                hiragana: "ピアノ　を　ひきません。",
+                romaji: "Piano o hikimasen.",
+                translation: "(I) do not play piano.",
+              },
+              {
+                full: "本を読みません。",
+                hiragana: "ほん　を　よみません。",
+                romaji: "Hon o yomimasen.",
+                translation: "(I) do not read books.",
+              },
+              {
+                full: "家を出ます。",
+                hiragana: "いえ　を　でます。",
+                romaji: "Ie o demasu.",
+                translation: "(I) will leave the house.",
+              },
+              {
+                full: "バスを降ります。",
+                hiragana: "バス　を　おります。",
+                romaji: "Basu o orimasu.",
+                translation: "(I) will get off the bus.",
+              },
+              {
+                full: "仕事を休みません。",
+                hiragana: "しごと　を　やすみません。",
+                romaji: "Shigoto o yasumimasen.",
+                translation: "(I) will not take a day off work.",
+              },
+              {
+                full: "山田さんが学校に行きます。",
+                hiragana: "やまだ　さん　が　がっこう　に　いきます。",
+                romaji: "Yamada-san ga gakkō ni ikimasu.",
+                translation: "Yamada will go to school.",
+              },
+              {
+                full: "山田さんが寿司を食べます。",
+                hiragana: "やまだ　さん　が　すし　を　たべます。",
+                romaji: "Yamada-san ga sushi o tabemasu.",
+                translation: "Yamada will eat sushi.",
+              },
+              {
+                full: "田中さんがビールを飲みます。",
+                hiragana: "たなか　さん　が　ビール　を　のみます。",
+                romaji: "Tanaka-san ga bīru o nomimasu.",
+                translation: "Tanaka will drink beer.",
+              },
+              {
+                full: "私がサッカーをします。",
+                hiragana: "わたし　が　サッカー　を　します。",
+                romaji: "Watashi ga sakkā o shimasu.",
+                translation: "I will play soccer.",
+              },
+              {
+                full: "お母さんが映画を見ます。",
+                hiragana: "おかあさん　が　えいが　を　みます。",
+                romaji: "Okāsan ga eiga o mimasu.",
+                translation: "(My) mom will watch a movie.",
+              },
+              {
+                full: "桜さんが本を読みます。",
+                hiragana: "さくら　さん　が　ほん　を　よみます。",
+                romaji: "Sakura-san ga hon o yomimasu.",
+                translation: "Sakura will read a book.",
+              },
+              { full: "" },
+            ],
+            module: "02",
+            lesson: 7,
+            title: "Making Sentences with Verbs",
+          },
+          {
+            rows: [{ full: "" }],
+            module: "02",
+            lesson: 8,
+            title: "Joining Words",
+          },
+          {
+            rows: [{ full: "" }],
+            module: "02",
+            lesson: 9,
+            title: "Saying Where You're From",
+          },
+          {
+            rows: [{ full: "" }],
+            module: "02",
+            lesson: 10,
+            title: "To Be and To Have",
+          },
+        ],
+      };
+
+      function loadData() {
+        populateModules();
+        // Initialize with Module 01, Lesson 1
+        document.getElementById("moduleSelect").value = "01";
+        populateLessons("01");
+        document.getElementById("lessonSelect").value = "0";
+        displayLesson("01", "0");
+      }
+
+      function populateModules() {
+        const moduleSelect = document.getElementById("moduleSelect");
+        moduleSelect.innerHTML = '<option value="">Select a module</option>';
+
+        Object.keys(data).forEach((moduleKey) => {
+          const option = document.createElement("option");
+          option.value = moduleKey;
+          option.textContent = `Module ${moduleKey}`;
+          moduleSelect.appendChild(option);
+        });
+      }
+
+      function populateLessons(moduleKey) {
+        const lessonSelect = document.getElementById("lessonSelect");
+        lessonSelect.innerHTML = '<option value="">Select a lesson</option>';
+
+        if (moduleKey && data[moduleKey]) {
+          data[moduleKey].forEach((lesson, index) => {
+            if (
+              lesson.rows &&
+              lesson.rows.some((row) => row.full && row.full.trim())
+            ) {
+              const option = document.createElement("option");
+              option.value = index;
+              option.textContent = `Lesson ${lesson.lesson}`;
+              lessonSelect.appendChild(option);
+            }
+          });
+          lessonSelect.disabled = false;
+        } else {
+          lessonSelect.disabled = true;
+        }
+      }
+
+      function displayLesson(moduleKey, lessonIndex) {
+        const contentDiv = document.getElementById("lessonContent");
+
+        if (
+          !moduleKey ||
+          lessonIndex === "" ||
+          !data[moduleKey] ||
+          !data[moduleKey][lessonIndex]
+        ) {
+          contentDiv.innerHTML =
+            '<div class="no-data">Select a module and lesson to view content</div>';
+          return;
+        }
+
+        const lesson = data[moduleKey][lessonIndex];
+        const validRows = lesson.rows.filter(
+          (row) => row.full && row.full.trim()
+        );
+
+        if (validRows.length === 0) {
+          contentDiv.innerHTML =
+            '<div class="no-data">No content available for this lesson</div>';
+          return;
+        }
+
+        let html = `
+          <div class="lesson-header">
+            <h2>Module ${lesson.module}, Lesson ${lesson.lesson}: ${lesson.title}</h2>
+          </div>
+        `;
+
+        validRows.forEach((row) => {
+          html += `
+            <div class="phrase">
+              <div class="japanese">${row.full}</div>
+              ${
+                row.hiragana
+                  ? `<div class="hiragana">${row.hiragana}</div>`
+                  : ""
+              }
+              ${row.romaji ? `<div class="romaji">${row.romaji}</div>` : ""}
+              ${
+                row.translation
+                  ? `<div class="translation">${row.translation}</div>`
+                  : ""
+              }
+            </div>
+          `;
+        });
+
+        contentDiv.innerHTML = html;
+      }
+
+      document
+        .getElementById("moduleSelect")
+        .addEventListener("change", function () {
+          const moduleKey = this.value;
+          populateLessons(moduleKey);
+          if (moduleKey && data[moduleKey] && data[moduleKey].length > 0) {
+            document.getElementById("lessonSelect").value = "0";
+            displayLesson(moduleKey, "0");
+          } else {
+            document.getElementById("lessonSelect").value = "";
+            displayLesson(moduleKey, "");
+          }
+        });
+
+      document
+        .getElementById("lessonSelect")
+        .addEventListener("change", function () {
+          const moduleKey = document.getElementById("moduleSelect").value;
+          const lessonIndex = this.value;
+          displayLesson(moduleKey, lessonIndex);
+        });
+
+      loadData();
+    </script>
+  </body>
+</html>

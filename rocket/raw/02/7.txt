@@ -1,0 +1,80 @@
+りんごを食べます。
+りんご　を　たべます。
+Ringo o tabemasu.
+(I) eat an apple.
+
+オレンジジュースを飲みます。
+オレンジジュース　を　飲みます。
+Orenji-jūsu o nomimasu.
+(I) drink orange juice.
+
+野球をします。
+やきゅう　を　します。
+Yakyū o shimasu.
+(I) play baseball.
+
+テレビを見ます。
+テレビ　を　みます。
+Terebi o mimasu.
+(I) watch TV.
+
+魚を食べますか？
+さかな　を　たべます　か？
+Sakana o tabemasu ka?
+Do (you) eat fish?
+
+ピアノを弾きません。
+ピアノ　を　ひきません。
+Piano o hikimasen.
+(I) do not play piano.
+
+本を読みません。
+ほん　を　よみません。
+Hon o yomimasen.
+(I) do not read books.
+
+家を出ます。
+いえ　を　でます。
+Ie o demasu.
+(I) will leave the house.
+
+バスを降ります。
+バス　を　おります。
+Basu o orimasu.
+(I) will get off the bus.
+
+仕事を休みません。
+しごと　を　やすみません。
+Shigoto o yasumimasen.
+(I) will not take a day off work.
+
+山田さんが学校に行きます。
+やまだ　さん　が　がっこう　に　いきます。
+Yamada-san ga gakkō ni ikimasu.
+Yamada will go to school.
+
+山田さんが寿司を食べます。
+やまだ　さん　が　すし　を　たべます。
+Yamada-san ga sushi o tabemasu.
+Yamada will eat sushi.
+
+田中さんがビールを飲みます。
+たなか　さん　が　ビール　を　のみます。
+Tanaka-san ga bīru o nomimasu.
+Tanaka will drink beer.
+
+私がサッカーをします。
+わたし　が　サッカー　を　します。
+Watashi ga sakkā o shimasu.
+I will play soccer.
+
+お母さんが映画を見ます。
+おかあさん　が　えいが　を　みます。
+Okāsan ga eiga o mimasu.
+(My) mom will watch a movie.
+
+桜さんが本を読みます。
+さくら　さん　が　ほん　を　よみます。
+Sakura-san ga hon o yomimasu.
+Sakura will read a book.
+
