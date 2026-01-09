@@ -41,7 +41,10 @@ const run = () => {
     }
   });
 
-  fs.writeFileSync("./rocket/parsed.json", JSON.stringify(finalResult));
+  fs.writeFileSync(
+    "./rocket/parsed.js",
+    `const data = ${JSON.stringify(finalResult)}`
+  );
 };
 
 run();

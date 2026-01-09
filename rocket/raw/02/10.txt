@@ -1,0 +1,104 @@
+猫がいます。
+ねこ　が　います。
+Neko ga imasu.
+There is a cat.
+
+人がいます。
+ひと　が　います。
+Hito ga imasu.
+There is a person.
+
+コンビニがあります。
+コンビニ　が　あります。
+Konbini ga arimasu.
+There is a convenience store.
+
+テレビがあります。
+テレビ　が　あります。
+Terebi ga arimasu.
+(I) have a TV.
+
+妹がいます。
+いもうと　が　います。
+Imōto ga imasu.
+(I) have a younger sister.
+
+車がありますか？
+くるま　が　あります　か？
+Kuruma ga arimasu ka?
+Do (you) have a car?
+
+明日テストがあります。
+あした　テスト　が　あります。
+Ashita tesuto ga arimasu.
+There will be a test tomorrow.
+
+週末に祭りがあります。
+しゅうまつ　に　まつり　が　あります。
+Shūmatsu ni matsuri ga arimasu.
+There will be a festival on the weekend.
+
+あそこに犬がいます。
+あそこ　に　いぬ　が　います。
+Asoko ni inu ga imasu.
+There is a dog over there.
+
+駅に警察官がいます。
+えき　に　けいさつかん　が　います。
+Eki ni keisatsukan ga imasu.
+There is a policeman at the train station.
+
+教室に先生がいます。
+きょうしつ　に　せんせい　が　います。
+Kyōshitsu ni sensei ga imasu.
+There is a teacher in the classroom.
+
+庭に猫がいます。
+にわ　に　ねこ　が　います。
+Niwa ni neko ga imasu.
+There is a cat in the garden.
+
+猫は庭にいます。
+ねこ　は　にわ　に　います。
+Neko wa niwa ni imasu.
+The cat is in the garden.
+
+コンビニはどこにありますか？
+コンビニ　は　どこ　に　あります　か？
+Konbini wa doko ni arimasu ka?
+Where is the convenience store?
+
+コンビニはあそこにあります。
+コンビニ　は　あそこ　に　あります。
+Konbini wa asoko ni arimasu.
+The convenience store is over there.
+
+ありますよ！
+あります　よ！
+Arimasu yo!
+(I) have it!
+
+そのコーヒーは熱いですよ！
+その　コーヒー　は　あつい　です　よ！
+Sono kōhī wa atsui desu yo!
+That coffee is hot!
+
+あそこにコンビニがありますよ。
+あそこ　に　コンビニ　が　あります　よ。
+Asoko ni konbini ga arimasu yo.
+There is a convenience store over there.
+
+今日はテストがありますよ。
+きょう　は　テスト　が　あります　よ。
+Kyō wa tesuto ga arimasu yo.
+(We) have a test today.
+
+魚は美味しいですよ！
+さかな　は　おいしい　です　よ！
+Sakana wa oishī desu yo!
+Fish is delicious!
+
+いいですよ。
+いい　です　よ。
+Ī desu yo.
+Alright.

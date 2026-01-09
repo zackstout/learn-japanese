@@ -1,0 +1,119 @@
+寿司とラーメンが好きです。
+すし　と　ラーメン　が　すき　です。
+Sushi to ramen ga suki desu.
+(I) like sushi and ramen.
+
+ケーキとクッキーとアイスを食べます。
+ケーキ　と　クッキー　と　アイス　を　たべます。
+Kēki to kukkī to aisu o tabemasu.
+(I) will eat cake, cookies, and ice cream.
+
+友達と遊びます。
+ともだち　と　あそびます。
+Tomodachi to asobimasu.
+(I) will hang out with (my) friend.
+
+お母さんとお父さんとお姉さんと晩ご飯を食べます。
+おかあさん　と　おとうさん　と　おねえさん　と　ばんごはん　を　たべます。
+Okāsan to otōsan to onēsan to bangohan o tabemasu.
+(I) eat dinner with (my) mom, dad, and older sister.
+
+彼氏と結婚します。
+かれし　と　けっこん　します。
+Kareshi to kekkon shimasu.
+(I) will get married to (my) boyfriend.
+
+チョコレートやケーキが好きです。
+チョコレート　や　ケーキ　が　すき　です。
+Chokorēto ya kēki ga suki desu.
+(I) like (sweet) things like chocolate and cake.
+
+野菜や魚を買います。
+やさい　や　さかな　を　かいます。
+Yasai ya sakana o kaimasu.
+(I) will buy things like vegetables and fish.
+
+ビールやワインを飲みます。
+ビール　や　ワイン　を　のみます。
+Bīru ya wain o nomimasu.
+(I) drink (beverages) like beer and wine.
+
+ペンや本などを買います。
+ペン　や　ほん　など　を　かいます。
+Pen ya hon nado o kaimasu.
+(I) will buy things like pens, books, etc.
+
+私も好きです！
+わたし　も　すき　です！
+Watashi mo suki desu!
+I like it too!
+
+野球が好きです。サッカーも好きです。
+やきゅう　が　すき　です。　サッカー　も　すき　です。
+Yakyū ga suki desu. Sakkā mo suki desu.
+(I) like baseball. (I) also like soccer.
+
+私は料理も絵も上手です。
+わたし　は　りょうり　も　え　も　じょうず　です。
+Watashi wa ryōri mo e mo jōzu desu.
+I am good at both cooking and drawing.
+
+肉も野菜も美味しいです。
+にく　も　やさい　も　おいしい　です。
+Niku mo yasai mo oishī desu.
+Meat and vegetables are both delicious.
+
+日本語は楽しいです。でも、難しいです。
+にほんご　は　たのしい　です。　でも、　むずかしい　です。
+Nihongo wa tanoshī desu. Demo, muzukashī desu.
+Japanese is fun. However it is difficult.
+
+紅茶を飲みます。
+こうちゃ　を　のみます。
+Kōcha o nomimasu.
+(I) will drink black tea.
+
+紅茶は飲みます。でも、コーヒーは飲みません。
+こうちゃ　は　のみます。　でも、　コーヒー　は　のみません。
+Kōcha wa nomimasu. Demo, kōhī wa nomimasen.
+(I) drink black tea. However, (I) don’t drink coffee.
+
+明日は学校です。でも、今日は休みです。
+あした　は　がっこう　です。　でも、　きょう　は　やすみ　です。
+Ashita wa gakkō desu. Demo, kyō wa yasumi desu.
+(I) have school tomorrow. However, (I) have the day off today.
+
+今日はいい天気です。でも、明日は雨です。
+きょう　は　いい　てんき　です。　でも、　あした　は　あめ　です。
+Kyō wa ī tenki desu. Demo, ashita wa ame desu.
+Today it is good weather. However, it will rain tomorrow.
+
+山田さんは行きます。でも、私は行きません。
+やまだ　さん　は　いきます。　でも、　わたし　は　いきません。
+Yamada-san wa ikimasu. Demo watashi wa ikimasen.
+Yamada will go. However, I will not go.
+
+日本語は難しいです。しかし、楽しいです。
+にほんご　は　むずかしい　です。　しかし、　たのしい　です。
+Nihongo wa muzukashī desu. Shikashi, tanoshī desu.
+Japanese is difficult. However, it is fun.
+
+寿司は食べますけど、魚は食べません。
+すし　は　たべます　けど、　さかな　は　たべません。
+Sushi wa tabemasu kedo, sakana wa tabemasen.
+(I) will eat sushi but (I) will not eat fish.
+
+田舎は静かですけど、不便です。
+いなか　は　しずか　です　けど、　ふべん　です。
+Inaka wa shizuka desu kedo, fuben desu.
+The countryside is quiet but it is inconvenient.
+
+田舎は静かですけれど、不便です。
+いなか　は　しずか　です　けれど、　ふべん　です。
+Inaka wa shizuka desu keredo, fuben desu.
+The countryside is quiet but it is inconvenient.
+
+海は綺麗ですが、危ないです。
+うみ　は　きれい　です　が、　あぶない　です。
+Umi wa kirei desu ga, abunai desu.
+The ocean is pretty but it is dangerous.
